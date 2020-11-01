@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface ICRUD_GENERIC<T> {
 
+   
+
     public void Add(T objeto) throws Exception;
 
     public void Delete(int n)throws Exception;

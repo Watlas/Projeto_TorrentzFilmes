@@ -1,8 +1,6 @@
 package br.com.watlas.modal;
 
-import java.sql.Array;
 import java.util.Date;
-import java.util.List;
 
 public class Contrata {
 
@@ -11,19 +9,19 @@ public class Contrata {
     private Date contrato_dataFim;
     private boolean contrato_status;
     private Usuario con_usuario_iden;
-    private Planos con_planos_iden;
+    private Plano con_plano_iden;
 
     public Contrata() {
     }
 
     public Contrata(int contrato_iden, Date contrato_dataInicio, Date contrato_dataFim,
-                    boolean contrato_status, Usuario con_usuario_iden, Planos con_planos_iden) {
+                    boolean contrato_status, Usuario con_usuario_iden, Plano con_plano_iden) {
         this.contrato_iden = contrato_iden;
         this.contrato_dataInicio = contrato_dataInicio;
         this.contrato_dataFim = contrato_dataFim;
         this.contrato_status = contrato_status;
         this.con_usuario_iden = con_usuario_iden;
-        this.con_planos_iden = con_planos_iden;
+        this.con_plano_iden = con_plano_iden;
     }
 
     public int getContrato_iden() {
@@ -66,11 +64,11 @@ public class Contrata {
         this.con_usuario_iden = con_usuario_iden;
     }
 
-    public Planos getCon_planos_iden() {
-        return con_planos_iden;
+    public Plano getCon_planos_iden() {
+        return con_plano_iden;
     }
 
-    public void setCon_planos_iden(Planos con_planos_iden) {
-        this.con_planos_iden = con_planos_iden;
+    public void setCon_planos_iden(Plano con_plano_iden) {
+        this.con_plano_iden = con_plano_iden;
     }
 }

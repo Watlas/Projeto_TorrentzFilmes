@@ -76,6 +76,7 @@ public class AdministradorDal<T> implements ICRUD_GENERIC<T> {
             Statement statement = conexao.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
+                administrador = new Administrador();
                 administrador.setAdm_iden((rs.getInt("adm_iden")));
                 administrador.setAdm_email(rs.getString("adm_email"));
                 administrador.setAdm_nome(rs.getString("adm_nome"));

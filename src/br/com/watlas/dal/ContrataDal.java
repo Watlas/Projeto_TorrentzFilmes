@@ -1,12 +1,10 @@
 package br.com.watlas.dal;
 
 import br.com.watlas.modal.Contrata;
-import br.com.watlas.modal.Planos;
 import br.com.watlas.modal.Usuario;
 import br.com.watlas.util.ConexaoDal;
 import br.com.watlas.util.ICRUD_GENERIC;
 
-import java.security.spec.ECField;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,7 +113,7 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
                 contrata.setContrato_iden(rs.getInt("con_iden"));
                 contrata.setContrato_dataInicio(rs.getDate("con_inicio"));
                 contrata.setContrato_dataFim(rs.getDate("con_fim"));
-           //     contrata.setCon_planos_iden((ArrayList<Planos>) rs.getArray("con_pla_iden"));
+           //     contrata.setCon_planos_iden((ArrayList<Plano>) rs.getArray("con_pla_iden"));
            //     contrata.setCon_usuario_iden((ArrayList<Usuario>) rs.getArray("con_usu_iden"));
 
 
