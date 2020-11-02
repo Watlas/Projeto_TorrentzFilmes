@@ -1,6 +1,7 @@
 package br.com.watlas.dal;
 
 import br.com.watlas.modal.Contrata;
+import br.com.watlas.modal.Plano;
 import br.com.watlas.modal.Usuario;
 import br.com.watlas.util.ConexaoDal;
 import br.com.watlas.util.ICRUD_GENERIC;
@@ -31,8 +32,8 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
             ps.setObject(1, contrata.getContrato_dataInicio());
             ps.setObject(2, contrata.getContrato_dataFim());
             ps.setObject(3, contrata.getContrato_status());
-            ps.setObject(4, contrata.getCon_planos_iden().getPlano_iden());
-            ps.setObject(5, contrata.getCon_usuario_iden().getUsuario_iden());
+            ps.setObject(4, contrata.getCon_plano_iden().get(0).getPlano_iden());
+            ps.setObject(5, contrata.getCon_usuario_iden().get(0).getUsuario_iden());
             ps.executeUpdate();
 
 
@@ -66,8 +67,8 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
             ps.setObject(1, contrata.getContrato_dataInicio());
             ps.setObject(2, contrata.getContrato_dataFim());
             ps.setObject(3, contrata.getContrato_status());
-            ps.setObject(4, contrata.getCon_planos_iden().getPlano_iden());
-            ps.setObject(5, contrata.getCon_usuario_iden().getUsuario_iden());
+            ps.setObject(4, contrata.getCon_plano_iden().get(0).getPlano_iden());
+            ps.setObject(5, contrata.getCon_usuario_iden().get(0).getUsuario_iden());
             ps.setObject(6, contrata.getContrato_iden());
             ps.executeUpdate();
 
@@ -80,8 +81,8 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public List getAll() throws Exception {
-
-        Usuario usuario = new Usuario();
+        UsuarioDal usuarioDal = new UsuarioDal();
+        PlanoDal planoDal = new PlanoDal();
         String sql = "SELECT * FROM contrata";
         List<Contrata> lista = new ArrayList<>();
         try {
@@ -91,8 +92,18 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
                 contrata.setContrato_iden(rs.getInt("con_iden"));
                 contrata.setContrato_dataInicio(rs.getDate("con_inicio"));
                 contrata.setContrato_dataFim(rs.getDate("con_fim"));
-                //contrata.setCon_usuario_iden(rs.getObject("con_usu_iden"));
-                //contrata.setCon_usuario_iden((ArrayList<Usuario>) rs.getArray("con_usu_iden"));
+
+                //COMP. USU+CONTRATA
+                int idusu = rs.getInt("con_usu_iden");
+                List<Usuario> usuarioList = usuarioDal.getAllId(idusu);
+                contrata.setCon_usuario_iden(usuarioList);
+
+                //COMP. PLA+CONTRATA
+                int udpla = rs.getInt("con_pla_iden");
+                List<Plano> planoList = planoDal.getAllId(udpla);
+                contrata.setCon_plano_iden(planoList);
+
+
                 lista.add(contrata);
 
             }
@@ -104,6 +115,8 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public Object getById(int n) throws Exception {
+        UsuarioDal usuarioDal = new UsuarioDal();
+        PlanoDal planoDal = new PlanoDal();
         String sql = "SELECT * FROM contrata WHERE con_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
@@ -113,8 +126,16 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
                 contrata.setContrato_iden(rs.getInt("con_iden"));
                 contrata.setContrato_dataInicio(rs.getDate("con_inicio"));
                 contrata.setContrato_dataFim(rs.getDate("con_fim"));
-           //     contrata.setCon_planos_iden((ArrayList<Plano>) rs.getArray("con_pla_iden"));
-           //     contrata.setCon_usuario_iden((ArrayList<Usuario>) rs.getArray("con_usu_iden"));
+
+                //COMP. USU+CONTRATA
+                int idusu = rs.getInt("con_usu_iden");
+                List<Usuario> usuarioList = usuarioDal.getAllId(idusu);
+                contrata.setCon_usuario_iden(usuarioList);
+
+                //COMP. PLA+CONTRATA
+                int udpla = rs.getInt("con_pla_iden");
+                List<Plano> planoList = planoDal.getAllId(udpla);
+                contrata.setCon_plano_iden(planoList);
 
 
             }

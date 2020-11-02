@@ -4,5 +4,5 @@ module Projeto.TorrentzFilmes {
     requires java.desktop;
     requires java.sql;
 
-    opens br.com.watlas.app.sample;
+    opens br.com.watlas.app.Principal;
 }

@@ -4,41 +4,41 @@ import java.util.Date;
 import java.util.List;
 
 public class MantenCupom {
-    private Date mantemCupomCriacao;
-    private List<Administrador> MantemCup_adm_iden;
-    private List<Cupom> MantemCup_cup_iden;
+    private int mantemCupom_iden;
+    private Administrador mantemcup_adm_iden;
+    private Cupom  mantemcup_cup_iden;
 
     public MantenCupom() {
     }
 
-    public MantenCupom(Date mantemCupomCriacao, List<Administrador> mantemCup_adm_iden, List<Cupom> mantemCup_cup_iden) {
-        this.mantemCupomCriacao = mantemCupomCriacao;
-        MantemCup_adm_iden = mantemCup_adm_iden;
-        MantemCup_cup_iden = mantemCup_cup_iden;
+    public MantenCupom(int mantemCupom_iden, Administrador mantemcup_adm_iden, Cupom mantemcup_cup_iden) {
+        this.mantemCupom_iden = mantemCupom_iden;
+        this.mantemcup_adm_iden = mantemcup_adm_iden;
+        this.mantemcup_cup_iden = mantemcup_cup_iden;
     }
 
-    public Date getMantemCupomCriacao() {
-        return mantemCupomCriacao;
+    public int getMantemCupom_iden() {
+        return mantemCupom_iden;
     }
 
-    public void setMantemCupomCriacao(Date mantemCupomCriacao) {
-        this.mantemCupomCriacao = mantemCupomCriacao;
+    public void setMantemCupom_iden(int mantemCupom_iden) {
+        this.mantemCupom_iden = mantemCupom_iden;
     }
 
-    public List<Administrador> getMantemCup_adm_iden() {
-        return MantemCup_adm_iden;
+    public Administrador getMantemcup_adm_iden() {
+        return mantemcup_adm_iden;
     }
 
-    public void setMantemCup_adm_iden(List<Administrador> mantemCup_adm_iden) {
-        MantemCup_adm_iden = mantemCup_adm_iden;
+    public void setMantemcup_adm_iden(Administrador mantemcup_adm_iden) {
+        this.mantemcup_adm_iden = mantemcup_adm_iden;
     }
 
-    public List<Cupom> getMantemCup_cup_iden() {
-        return MantemCup_cup_iden;
+    public Cupom getMantemcup_cup_iden() {
+        return mantemcup_cup_iden;
     }
 
-    public void setMantemCup_cup_iden(List<Cupom> mantemCup_cup_iden) {
-        MantemCup_cup_iden = mantemCup_cup_iden;
+    public void setMantemcup_cup_iden(Cupom mantemcup_cup_iden) {
+        this.mantemcup_cup_iden = mantemcup_cup_iden;
     }
 }
 

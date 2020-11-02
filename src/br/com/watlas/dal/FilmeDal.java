@@ -57,7 +57,7 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public void Update(T objeto) throws Exception {
-        String sql = "UPDATE filmes SET fil_caminho, fil_titulo, fil_ano ,fil_sintopse,fil_capa, fil_cat_iden" +
+        String sql = "UPDATE filmes SET fil_caminho=?, fil_titulo=?, fil_ano=? ,fil_sintopse=?,fil_capa=?, fil_cat_iden=?" +
                 "WHERE fil_iden=?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
@@ -156,5 +156,35 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
         }
 
         return filme;
+    }
+    public List getAllId(int id) throws Exception {
+
+        CategoriaDal categoriaDal = new CategoriaDal();
+        String sql = "SELECT * FROM filmes WHERE fil_iden =?";
+        List<Filme> lista = new ArrayList<>();
+        try {
+
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                filme = new Filme();
+                filme.setFilme_ano(rs.getInt("fil_ano"));
+                filme.setFilme_caminho(rs.getString("fil_caminho"));
+                filme.setFilme_capa(rs.getString("fil_capa"));
+                filme.setFilme_iden(rs.getInt("fil_iden"));
+                filme.setFilme_sintopse(rs.getString("fil_sintopse"));
+                filme.setFilme_titulo(rs.getString("fil_titulo"));
+                int ids = rs.getInt("fil_cat_iden");
+                Categoria categoria = (Categoria) categoriaDal.getById(ids);
+                filme.setFilme_cat_iden(categoria);
+                lista.add(filme);
+
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return lista;
     }
 }

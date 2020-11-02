@@ -60,4 +60,15 @@ public class Visualiza {
     public void setVisu_filme_iden(List<Filme> visu_filme_iden) {
         this.visu_filme_iden = visu_filme_iden;
     }
+
+    @Override
+    public String toString() {
+        return "Visualiza{" +
+                "visu_iden=" + visu_iden +
+                ", visu_completo=" + visu_completo +
+                ", visu_dataVisualizacao=" + visu_dataVisualizacao +
+                ", visu_usuario_iden=" + visu_usuario_iden +
+                ", visu_filme_iden=" + visu_filme_iden +
+                '}';
+    }
 }

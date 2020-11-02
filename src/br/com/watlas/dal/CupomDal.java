@@ -15,15 +15,17 @@ public class CupomDal implements ICRUD_GENERIC {
     private Connection conexao;
     Cupom cupom = new Cupom();
 
-    public CupomDal(Connection conexao) throws Exception{
+
+    public CupomDal() throws Exception{
         this.conexao = ConexaoDal.getConexao();
     }
+
 
     @Override
     public void Add(Object objeto) throws Exception {
         cupom = (Cupom) objeto;
         String sql = "INSERT INTO cupons(cup_data_geracao,cup_porcentagem,cup_nome)" +
-                "VALUES (?,?,?)";
+                " VALUES (?,?,?)";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setObject(1, cupom.getCupom_DataGeracao());
@@ -93,10 +95,10 @@ public class CupomDal implements ICRUD_GENERIC {
 
     @Override
     public Object getById(int n) throws Exception {
-        String sql = "SELECT * FROM cupons WHERE cup_iden";
+        String sql = "SELECT * FROM cupons WHERE cup_iden =?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setObject(1,n);
+            preparedStatement.setInt(1,n);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
                 cupom = new Cupom();
@@ -114,6 +116,22 @@ public class CupomDal implements ICRUD_GENERIC {
 
     @Override
     public Object getByNome(String nome) throws Exception {
-        return null;
+        String sql = "SELECT * FROM cupons WHERE cup_nome =?";
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1,nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            if(rs.next()){
+                cupom = new Cupom();
+                cupom.setCupom_iden(rs.getInt("cup_iden"));
+                cupom.setNome(rs.getString("cup_nome"));
+                cupom.setCupom_DataGeracao(rs.getDate("cup_data_geracao"));
+                cupom.setCupom_porcentagem(rs.getBigDecimal("cup_porcentagem"));
+
+            }
+        }catch (Exception e){
+            throw e;
+        }
+        return cupom;
     }
 }

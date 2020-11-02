@@ -1,6 +1,7 @@
 package br.com.watlas.modal;
 
 import java.util.Date;
+import java.util.List;
 
 public class Contrata {
 
@@ -8,14 +9,13 @@ public class Contrata {
     private Date contrato_dataInicio;
     private Date contrato_dataFim;
     private boolean contrato_status;
-    private Usuario con_usuario_iden;
-    private Plano con_plano_iden;
+    private List<Usuario> con_usuario_iden;
+    private List<Plano> con_plano_iden;
 
     public Contrata() {
     }
 
-    public Contrata(int contrato_iden, Date contrato_dataInicio, Date contrato_dataFim,
-                    boolean contrato_status, Usuario con_usuario_iden, Plano con_plano_iden) {
+    public Contrata(int contrato_iden, Date contrato_dataInicio, Date contrato_dataFim, boolean contrato_status, List<Usuario> con_usuario_iden, List<Plano> con_plano_iden) {
         this.contrato_iden = contrato_iden;
         this.contrato_dataInicio = contrato_dataInicio;
         this.contrato_dataFim = contrato_dataFim;
@@ -56,19 +56,19 @@ public class Contrata {
         this.contrato_status = contrato_status;
     }
 
-    public Usuario getCon_usuario_iden() {
+    public List<Usuario> getCon_usuario_iden() {
         return con_usuario_iden;
     }
 
-    public void setCon_usuario_iden(Usuario con_usuario_iden) {
+    public void setCon_usuario_iden(List<Usuario> con_usuario_iden) {
         this.con_usuario_iden = con_usuario_iden;
     }
 
-    public Plano getCon_planos_iden() {
+    public List<Plano> getCon_plano_iden() {
         return con_plano_iden;
     }
 
-    public void setCon_planos_iden(Plano con_plano_iden) {
+    public void setCon_plano_iden(List<Plano> con_plano_iden) {
         this.con_plano_iden = con_plano_iden;
     }
 }

@@ -38,7 +38,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public void Delete(int n) throws Exception {
-        String sql = "DELETE FROM categorias WHERE cat_iden";
+        String sql = "DELETE FROM categorias WHERE cat_iden =?s";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, n);
@@ -51,7 +51,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
     @Override
     public void Update(T objeto) throws Exception {
         categoria = (Categoria) objeto;
-        String sql = "UPDATE categorias SET cat_nome=? WHERE cat_iden";
+        String sql = "UPDATE categorias SET cat_nome=? WHERE cat_iden =?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, categoria.getCategoria_nome());
@@ -86,7 +86,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public Object getById(int n) throws Exception {
-        String sql = "SELECT * FROM categorias WHERE cat_iden";
+        String sql = "SELECT * FROM categorias WHERE cat_iden =?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setObject(1, n);
@@ -105,7 +105,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public Object getByNome(String nome) throws Exception {
-        String sql = "SELECT * FROM categorias WHERE cat_nome";
+        String sql = "SELECT * FROM categorias WHERE cat_nome =?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, nome);

@@ -78,4 +78,17 @@ public class Filme {
     public void setFilme_capa(String filme_capa) {
         this.filme_capa = filme_capa;
     }
+
+    @Override
+    public String toString() {
+        return "Filme{" +
+                "filme_iden=" + filme_iden +
+                ", filme_titulo='" + filme_titulo + '\'' +
+                ", filme_ano=" + filme_ano +
+                ", filme_caminho='" + filme_caminho + '\'' +
+                ", filme_sintopse='" + filme_sintopse + '\'' +
+                ", filme_cat_iden=" + filme_cat_iden +
+                ", filme_capa='" + filme_capa + '\'' +
+                '}';
+    }
 }

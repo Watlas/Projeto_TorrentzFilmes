@@ -90,7 +90,7 @@ public class PlanoDal implements ICRUD_GENERIC {
 
     @Override
     public Object getById(int n) throws Exception {
-        String sql = "SELECT * FROM planos WHERE pla_iden";
+        String sql = "SELECT * FROM planos WHERE pla_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, n);
@@ -112,7 +112,7 @@ public class PlanoDal implements ICRUD_GENERIC {
 
     @Override
     public Object getByNome(String nome) throws Exception {
-        String sql = "SELECT * FROM planos WHERE pla_nome";
+        String sql = "SELECT * FROM planos WHERE pla_nome=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, nome);
@@ -130,5 +130,26 @@ public class PlanoDal implements ICRUD_GENERIC {
 
 
         return plano;
+    }
+    public List getAllId(int iden) throws Exception {
+        String sql = "SELECT * FROM planos WHERE pla_iden=?";
+        List<Plano> lista = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setInt(1,iden);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                plano = new Plano();
+                plano.setPlano_acessSimutaneo(rs.getInt("pla_acesso_simutaneo"));
+                plano.setPlano_iden(rs.getInt("pla_iden"));
+                plano.setPlano_nome(rs.getString("pla_nome"));
+                plano.setPlano_preco(rs.getBigDecimal("pla_preco"));
+                lista.add(plano);
+
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
     }
 }

@@ -24,7 +24,7 @@ public class AdministradorDal<T> implements ICRUD_GENERIC<T> {
     public void Add(T objeto) throws Exception {
         administrador = (Administrador) objeto;
         String sql = "INSERT INTO administrador(adm_iden, adm_nome, adm_email, adm_senha)" +
-                "VALUES (DEFAULT, ?,?,?)";
+                " VALUES (DEFAULT, ?,?,?)";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, administrador.getAdm_nome());
