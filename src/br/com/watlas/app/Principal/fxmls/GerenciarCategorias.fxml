@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="273.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControleCategoria">
+   <children>
+      <Label layoutX="14.0" layoutY="34.0" text="NOME DA CATEGORIA" />
+      <TextField fx:id="txtNomeCat" layoutX="153.0" layoutY="30.0" prefHeight="26.0" prefWidth="320.0" />
+      <Label layoutX="14.0" layoutY="79.0" text="PESQUISAR" />
+      <TextField fx:id="txtPesquisaCat" layoutX="14.0" layoutY="97.0" onKeyReleased="#vaiPesquisa" />
+      <Button fx:id="bntIncluirCat" layoutX="418.0" layoutY="97.0" mnemonicParsing="false" onAction="#vaiIncluirCat" text="INCLUIR" />
+      <Button fx:id="bntExcluirCat" layoutX="347.0" layoutY="97.0" mnemonicParsing="false" onAction="#vaiExcluirCat" text="EXCLUIR" />
+      <Button fx:id="btnAlterarCat" layoutX="273.0" layoutY="97.0" mnemonicParsing="false" onAction="#VaiAlterarCat" text="ALTERAR" />
+      <Button fx:id="btnVoltarCat" layoutX="204.0" layoutY="97.0" mnemonicParsing="false" onAction="#vaiVoltarTela" text="VOLTAR" />
+      <TableView fx:id="tableCategorias" layoutX="14.0" layoutY="143.0" onMouseReleased="#vaiSetarDadosTable" prefHeight="200.0" prefWidth="466.0">
+        <columns>
+          <TableColumn fx:id="columIdCat" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="columNomeCat" prefWidth="390.3999847412109" text="NOME DA CATEGORIA" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

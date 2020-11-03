@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 
 public class Plano {
     private int plano_iden;
-    private BigDecimal plano_preco;
+    private double plano_preco;
     private String plano_nome;
     private int plano_acessSimutaneo;
 
     public Plano() {
     }
 
-    public Plano(int plano_acessSimutaneo, int plano_iden, BigDecimal plano_preco, String nome) {
+    public Plano(int plano_acessSimutaneo, int plano_iden, Double plano_preco, String nome) {
         this.plano_acessSimutaneo = plano_acessSimutaneo;
         this.plano_iden = plano_iden;
         this.plano_preco = plano_preco;
@@ -26,11 +26,11 @@ public class Plano {
         this.plano_iden = plano_iden;
     }
 
-    public BigDecimal getPlano_preco() {
+    public double getPlano_preco() {
         return plano_preco;
     }
 
-    public void setPlano_preco(BigDecimal plano_preco) {
+    public void setPlano_preco(double plano_preco) {
         this.plano_preco = plano_preco;
     }
 

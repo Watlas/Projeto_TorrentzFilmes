@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="460.0" prefWidth="489.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerUsuario_ADM">
+   <children>
+      <GridPane layoutX="26.0" layoutY="29.0" prefHeight="161.0" prefWidth="437.0" AnchorPane.bottomAnchor="294.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0" AnchorPane.topAnchor="29.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="50.59999809265136" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.00000762939453" minWidth="10.0" prefWidth="133.2" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="198.00000762939453" minWidth="10.0" prefWidth="103.59999999999997" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.00000762939453" minWidth="10.0" prefWidth="157.2" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="txtNome" prefHeight="26.0" prefWidth="149.0" GridPane.columnIndex="1" />
+            <TextField fx:id="txtEmail" prefHeight="26.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtCpf" prefHeight="26.0" prefWidth="145.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="NOME" />
+            <Label text="EMAIL" GridPane.rowIndex="1" />
+            <Label prefHeight="18.0" prefWidth="34.0" text="CPF" GridPane.rowIndex="2" />
+            <Label text="SENHA" GridPane.rowIndex="3" />
+            <Label prefHeight="18.0" prefWidth="69.0" text="CONFIRMAR" textAlignment="CENTER" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <PasswordField fx:id="txtSenha" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <PasswordField fx:id="txtSenhaConfirmar" prefHeight="26.0" prefWidth="160.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboCupom" prefHeight="26.0" prefWidth="156.0" promptText="&lt;CUPOM&gt;" GridPane.columnIndex="3" />
+            <Label text="CUPOM" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+      <TableView fx:id="tableUsuario" layoutX="-1.0" layoutY="273.0" onMouseReleased="#vaiSetarDadosNoTxt" prefHeight="211.0" prefWidth="490.0">
+        <columns>
+          <TableColumn fx:id="columId" prefWidth="41.19998246431351" text="ID" />
+          <TableColumn fx:id="columNome" prefWidth="83.39999008178711" text="NOME" />
+            <TableColumn fx:id="columEmail" prefWidth="136.6000213623047" text="EMAIL" />
+            <TableColumn fx:id="columCpf" prefWidth="100.5999755859375" text="CPF" />
+            <TableColumn fx:id="columCupom" prefWidth="130.0" text="CUPOM" />
+        </columns>
+      </TableView>
+      <GridPane alignment="CENTER" layoutX="182.0" layoutY="242.0" prefHeight="30.0" prefWidth="306.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#vaiIncluir" text="INCLUIR" GridPane.columnIndex="3" />
+            <Button mnemonicParsing="false" onAction="#vaiExcluir" text="EXCLUIR" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#vaiEditar" text="EDITAR" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#vaiVoltar" text="VOLTAR" />
+         </children>
+      </GridPane>
+      <Label layoutX="183.0" layoutY="5.0" text="GERENCIAR USUARIOS" />
+      <TextField layoutX="14.0" layoutY="244.0" onKeyReleased="#vaiPesquisarNome" prefHeight="26.0" prefWidth="156.0" />
+      <Label layoutX="14.0" layoutY="224.0" text="PESQUISAR" />
+   </children>
+</AnchorPane>

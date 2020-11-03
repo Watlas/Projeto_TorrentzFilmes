@@ -187,4 +187,33 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
 
         return lista;
     }
+
+    public List getAllPesquisa(String fil) throws Exception {
+
+        CategoriaDal categoriaDal = new CategoriaDal();
+        String sql = "SELECT * FROM filmes WHERE fil_titulo LIKE '%" +fil+ "%'";
+        List<Filme> lista = new ArrayList<>();
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                filme = new Filme();
+                filme.setFilme_ano(rs.getInt("fil_ano"));
+                filme.setFilme_caminho(rs.getString("fil_caminho"));
+                filme.setFilme_capa(rs.getString("fil_capa"));
+                filme.setFilme_iden(rs.getInt("fil_iden"));
+                filme.setFilme_sintopse(rs.getString("fil_sintopse"));
+                filme.setFilme_titulo(rs.getString("fil_titulo"));
+                int id = rs.getInt("fil_cat_iden");
+                Categoria categoria = (Categoria) categoriaDal.getById(id);
+                filme.setFilme_cat_iden(categoria);
+                lista.add(filme);
+
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+
+        return lista;
+    }
 }

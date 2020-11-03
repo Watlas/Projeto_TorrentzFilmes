@@ -78,7 +78,7 @@ public class PlanoDal implements ICRUD_GENERIC {
                 plano.setPlano_acessSimutaneo(rs.getInt("pla_acesso_simutaneo"));
                 plano.setPlano_iden(rs.getInt("pla_iden"));
                 plano.setPlano_nome(rs.getString("pla_nome"));
-                plano.setPlano_preco(rs.getBigDecimal("pla_preco"));
+                plano.setPlano_preco(rs.getDouble("pla_preco"));
                 lista.add(plano);
 
             }
@@ -100,7 +100,7 @@ public class PlanoDal implements ICRUD_GENERIC {
                 plano.setPlano_acessSimutaneo(rs.getInt("pla_acesso_simutaneo"));
                 plano.setPlano_iden(rs.getInt("pla_iden"));
                 plano.setPlano_nome(rs.getString("pla_nome"));
-                plano.setPlano_preco(rs.getBigDecimal("pla_preco"));
+                plano.setPlano_preco(rs.getDouble("pla_preco"));
             }
         } catch (Exception e) {
             throw e;
@@ -122,7 +122,7 @@ public class PlanoDal implements ICRUD_GENERIC {
                 plano.setPlano_acessSimutaneo(rs.getInt("pla_acesso_simutaneo"));
                 plano.setPlano_iden(rs.getInt("pla_iden"));
                 plano.setPlano_nome(rs.getString("pla_nome"));
-                plano.setPlano_preco(rs.getBigDecimal("pla_preco"));
+                plano.setPlano_preco(rs.getDouble("pla_preco"));
             }
         } catch (Exception e) {
             throw e;
@@ -143,7 +143,27 @@ public class PlanoDal implements ICRUD_GENERIC {
                 plano.setPlano_acessSimutaneo(rs.getInt("pla_acesso_simutaneo"));
                 plano.setPlano_iden(rs.getInt("pla_iden"));
                 plano.setPlano_nome(rs.getString("pla_nome"));
-                plano.setPlano_preco(rs.getBigDecimal("pla_preco"));
+                plano.setPlano_preco(rs.getDouble("pla_preco"));
+                lista.add(plano);
+
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
+    public List getAllPesquisa(String nome) throws Exception {
+        String sql = "SELECT * FROM planos WHERE pla_nome LIKE '%"+nome+"%'";
+        List<Plano> lista = new ArrayList<>();
+        try {
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                plano = new Plano();
+                plano.setPlano_acessSimutaneo(rs.getInt("pla_acesso_simutaneo"));
+                plano.setPlano_iden(rs.getInt("pla_iden"));
+                plano.setPlano_nome(rs.getString("pla_nome"));
+                plano.setPlano_preco(rs.getDouble("pla_preco"));
                 lista.add(plano);
 
             }

@@ -6,7 +6,7 @@ import java.util.List;
 public class MantenCupom {
     private int mantemCupom_iden;
     private Administrador mantemcup_adm_iden;
-    private Cupom  mantemcup_cup_iden;
+    private Cupom mantemcup_cup_iden;
 
     public MantenCupom() {
     }

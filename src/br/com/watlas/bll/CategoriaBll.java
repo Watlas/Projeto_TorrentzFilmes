@@ -66,4 +66,12 @@ public class CategoriaBll implements ICRUD_GENERIC {
             throw e;
         }
     }
+    public List getAllPesquisa(String nome) throws Exception {
+        try {
+            return dal.getAllPesquisa(nome);
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
 }

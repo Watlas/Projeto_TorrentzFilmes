@@ -6,10 +6,10 @@
 
 <AnchorPane prefHeight="226.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLogin">
    <children>
-      <Button fx:id="btnGerenciarFilme" layoutX="30.0" layoutY="57.0" mnemonicParsing="false" onAction="#entrarGerenciadofilme" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR FILMES" />
-      <Button fx:id="btnGerenciarPlanos" layoutX="207.0" layoutY="57.0" mnemonicParsing="false" onAction="#entrarEmgerenciarplanos" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR PLANOS" />
+      <Button fx:id="btnGerenciarFilme" layoutX="30.0" layoutY="57.0" mnemonicParsing="false" onAction="#entrarEmGerenciadofilme" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR FILMES" />
+      <Button fx:id="btnGerenciarPlanos" layoutX="207.0" layoutY="57.0" mnemonicParsing="false" onAction="#entrarEmGerenciarplanos" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR PLANOS" />
       <Button fx:id="bntGerenciadorCupom" layoutX="30.0" layoutY="153.0" mnemonicParsing="false" onAction="#entrarEmGerenciadorCupom" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR CUPONS" />
-      <Button fx:id="btnGerenciarUsuario" layoutX="207.0" layoutY="153.0" mnemonicParsing="false" onAction="#entrarGerenciarUsuario" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR USUARIOS" />
+      <Button fx:id="btnGerenciarUsuario" layoutX="207.0" layoutY="153.0" mnemonicParsing="false" onAction="#entrarEmGerenciarUsuario" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR USUARIOS" />
       <Label layoutX="30.0" layoutY="14.0" text="SELECIONE OPÇÃO DESEJADA" />
       <Button layoutX="287.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" text="VOLTAR" />
    </children>

@@ -7,13 +7,13 @@ public class Cupom {
     private int cupom_iden;
     private String nome;
     private Date cupom_DataGeracao;
-    private BigDecimal cupom_porcentagem;
+    private Double cupom_porcentagem;
 
     public Cupom() {
     }
 
     public Cupom(int cupom_iden, String nome, Date cupom_DataGeracao,
-                 BigDecimal cupom_porcentagem) {
+                 Double cupom_porcentagem) {
         this.cupom_iden = cupom_iden;
         this.nome = nome;
         this.cupom_DataGeracao = cupom_DataGeracao;
@@ -44,11 +44,11 @@ public class Cupom {
         this.cupom_DataGeracao = cupom_DataGeracao;
     }
 
-    public BigDecimal getCupom_porcentagem() {
+    public Double getCupom_porcentagem() {
         return cupom_porcentagem;
     }
 
-    public void setCupom_porcentagem(BigDecimal cupom_porcentagem) {
+    public void setCupom_porcentagem(Double cupom_porcentagem) {
         this.cupom_porcentagem = cupom_porcentagem;
     }
 

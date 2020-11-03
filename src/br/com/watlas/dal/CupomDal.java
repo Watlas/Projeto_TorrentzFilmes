@@ -56,7 +56,7 @@ public class CupomDal implements ICRUD_GENERIC {
     public void Update(Object objeto) throws Exception {
         cupom = (Cupom) objeto;
         String sql = "UPDATE cupons SET cup_data_geracao=?,cup_porcentagem=?,cup_nome=?" +
-                "WHERE cup_iden=?";
+                " WHERE cup_iden=?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setObject(1, cupom.getCupom_DataGeracao());
@@ -80,7 +80,7 @@ public class CupomDal implements ICRUD_GENERIC {
             while(rs.next()){
                 cupom = new Cupom();
                 cupom.setCupom_DataGeracao(rs.getDate("cup_data_geracao"));
-                cupom.setCupom_porcentagem(rs.getBigDecimal("cup_porcentagem"));
+                cupom.setCupom_porcentagem(rs.getDouble("cup_porcentagem"));
                 cupom.setNome(rs.getString("cup_nome"));
                 cupom.setCupom_iden(rs.getInt("cup_iden"));
                 lista.add(cupom);
@@ -105,7 +105,7 @@ public class CupomDal implements ICRUD_GENERIC {
                 cupom.setCupom_iden(rs.getInt("cup_iden"));
                 cupom.setNome(rs.getString("cup_nome"));
                 cupom.setCupom_DataGeracao(rs.getDate("cup_data_geracao"));
-                cupom.setCupom_porcentagem(rs.getBigDecimal("cup_porcentagem"));
+                cupom.setCupom_porcentagem(rs.getDouble("cup_porcentagem"));
 
             }
         }catch (Exception e){
@@ -126,7 +126,7 @@ public class CupomDal implements ICRUD_GENERIC {
                 cupom.setCupom_iden(rs.getInt("cup_iden"));
                 cupom.setNome(rs.getString("cup_nome"));
                 cupom.setCupom_DataGeracao(rs.getDate("cup_data_geracao"));
-                cupom.setCupom_porcentagem(rs.getBigDecimal("cup_porcentagem"));
+                cupom.setCupom_porcentagem(rs.getDouble("cup_porcentagem"));
 
             }
         }catch (Exception e){
@@ -134,4 +134,7 @@ public class CupomDal implements ICRUD_GENERIC {
         }
         return cupom;
     }
+
 }
+
+

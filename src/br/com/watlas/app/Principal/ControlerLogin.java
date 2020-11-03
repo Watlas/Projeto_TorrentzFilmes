@@ -4,9 +4,13 @@ import br.com.watlas.app.Principal.Mainapp;
 import br.com.watlas.dal.AdministradorDal;
 import br.com.watlas.modal.Administrador;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ControlerLogin {
     //textField's da tela de CADASTRO
@@ -23,16 +27,24 @@ public class ControlerLogin {
     private AdministradorDal administradorDal = null;
 
 
+    ControlerCupom com = new ControlerCupom();
+    ControlerFilme conf = new ControlerFilme();
+
     public void fazerLogin(ActionEvent actionEvent) {
 
         try {
             administrador = new Administrador();
-            administradorDal =  new AdministradorDal();
+            administradorDal = new AdministradorDal();
             //
             administrador = (Administrador) administradorDal.getByNome(txtloginNome.getText());
-            if(administrador.getSenha().equals(txtLoginSenha.getText())){
+
+
+            if (administrador.getSenha().equals(txtLoginSenha.getText())) {
+                com.setAdm(administrador);
+                conf.setAdministrador(administrador);
                 Mainapp.mudarTela("teladeselecao");
-            }else{
+
+            } else {
 
                 dialogoErro.setTitle("ERRO");
                 dialogoErro.setHeaderText("Não foi possivel fazer o login");
@@ -88,6 +100,7 @@ public class ControlerLogin {
 
     public void VoltarTelaLogin(ActionEvent actionEvent) throws Exception {
         Mainapp.mudarTela("main");
+
     }
 
     public boolean validaSenha() {
@@ -101,21 +114,20 @@ public class ControlerLogin {
         return true;
     }
 
-    public void entrarGerenciadofilme(ActionEvent actionEvent) {
-        try {
-            Mainapp.mudarTela("gerenciafilmes");
-
-        }catch (Exception e){
-
-        }
+    public void entrarEmGerenciadofilme(ActionEvent actionEvent) throws Exception {
+        Mainapp.mudarTela("gerenciafilmes");
     }
 
-    public void entrarEmgerenciarplanos(ActionEvent actionEvent) {
+    public void entrarEmGerenciarplanos(ActionEvent actionEvent) throws Exception {
+        Mainapp.mudarTela("gerenciarPlanos");
     }
 
-    public void entrarEmGerenciadorCupom(ActionEvent actionEvent) {
+    public void entrarEmGerenciadorCupom(ActionEvent actionEvent) throws Exception {
+        Mainapp.mudarTela("gerenciadorCupons");
     }
 
-    public void entrarGerenciarUsuario(ActionEvent actionEvent) {
+    public void entrarEmGerenciarUsuario(ActionEvent actionEvent) throws Exception {
+        Mainapp.mudarTela("gerenciarUsuario");
     }
+
 }

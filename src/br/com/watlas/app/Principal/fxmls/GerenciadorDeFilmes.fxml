@@ -21,10 +21,10 @@
       <ComboBox fx:id="comboCategoria" layoutX="130.0" layoutY="247.0" prefWidth="150.0" promptText="&lt;SELECIONE&gt;" />
       <Label layoutX="13.0" layoutY="251.0" text="CATEGORIA" />
       <Button fx:id="bntFilAdicinar" layoutX="506.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionAdicionar" text="ADICIONAR" />
-      <Button fx:id="bntFilExcluir" layoutX="427.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionExcluir" text="EXCLUIR" />
-      <Button fx:id="bntFilEditar" layoutX="355.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionEditar" text="EDITAR" />
-      <Button fx:id="bntFilVoltar" layoutX="280.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionVoltar" text="VOLTAR" />
-      <TableView fx:id="tableFilmes" layoutX="19.0" layoutY="337.0" prefHeight="200.0" prefWidth="290.0">
+      <Button fx:id="bntFilExcluir" layoutX="437.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionExcluir" text="EXCLUIR" />
+      <Button fx:id="bntFilEditar" layoutX="369.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionEditar" text="EDITAR" />
+      <Button fx:id="bntFilVoltar" layoutX="299.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionVoltar" text="VOLTAR" />
+      <TableView fx:id="tableFilmes" layoutX="19.0" layoutY="337.0" onMouseReleased="#PegarDaTableFilme" prefHeight="200.0" prefWidth="290.0">
         <columns>
           <TableColumn fx:id="tableFilme_Id" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="tableFilme_titulo" prefWidth="108.20001220703125" text="TITULO" />
@@ -32,5 +32,8 @@
         </columns>
       </TableView>
       <ImageView fx:id="panelImagem" fitHeight="200.0" fitWidth="256.0" layoutX="327.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="txtPesquisa" layoutX="86.0" layoutY="290.0" onKeyReleased="#txtPesquisarNomeFilme" prefHeight="26.0" prefWidth="194.0" />
+      <Label layoutX="12.0" layoutY="294.0" prefHeight="18.0" prefWidth="62.0" text="PESQUISAR" />
+      <Button fx:id="btnCadCategoria" layoutX="303.0" layoutY="247.0" mnemonicParsing="false" onAction="#vaiAbrircadastroCat" prefHeight="26.0" prefWidth="39.0" text="+" />
    </children>
 </AnchorPane>

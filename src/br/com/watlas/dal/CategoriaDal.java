@@ -38,7 +38,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public void Delete(int n) throws Exception {
-        String sql = "DELETE FROM categorias WHERE cat_iden =?s";
+        String sql = "DELETE FROM categorias WHERE cat_iden =?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setInt(1, n);
@@ -55,7 +55,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1, categoria.getCategoria_nome());
-            preparedStatement.setObject(2, categoria.getCategoria_nome());
+            preparedStatement.setObject(2, categoria.getCategoria_iden());
             preparedStatement.executeUpdate();
 
         }catch (Exception e){
@@ -120,5 +120,23 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
 
         }
         return categoria;
+    }
+    public List getAllPesquisa(String nome) throws Exception {
+        List<Categoria> lista = new ArrayList<>();
+        String sql = "SELECT * FROM categorias WHERE cat_nome LIKE '%"+nome+"%'";
+        try {
+            Statement st = conexao.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                categoria = new Categoria();
+                categoria.setCategoria_iden(rs.getInt("cat_iden"));
+                categoria.setCategoria_nome(rs.getString("cat_nome"));
+                lista.add(categoria);
+
+            }
+        }catch (Exception e){
+            throw e;
+        }
+        return lista;
     }
 }

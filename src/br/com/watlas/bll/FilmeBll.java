@@ -67,4 +67,11 @@ public class FilmeBll implements ICRUD_GENERIC {
             throw e;
         }
     }
+    public List getAllPesquisa(String fil) throws Exception {
+        try {
+return  dal.getAllPesquisa(fil);
+        }catch (Exception e){
+            throw e;
+        }
+    }
 }
