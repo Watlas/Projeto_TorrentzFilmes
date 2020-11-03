@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="356.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerCupom">
+   <children>
+      <TabPane prefHeight="356.0" prefWidth="419.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="GERENCIAR CUPOM">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="411.0">
+                     <children>
+                        <TextField fx:id="txtNomeCup" layoutX="116.0" layoutY="13.0" prefHeight="26.0" prefWidth="287.0" />
+                        <TextField fx:id="txtDescontoCup" layoutX="116.0" layoutY="55.0" />
+                        <Label layoutX="14.0" layoutY="18.0" text="NOME/CODIGO" />
+                        <Label layoutX="14.0" layoutY="59.0" text="DESCONTO" />
+                        <TableView fx:id="tableCup" layoutX="-3.0" layoutY="143.0" onMouseReleased="#VaiSetarDadosNoTxt" prefHeight="182.0" prefWidth="426.0">
+                          <columns>
+                            <TableColumn fx:id="columID" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="columNomeCupom" prefWidth="113.20000457763672" text="NOME/CODIGO" />
+                              <TableColumn fx:id="columDataCup" prefWidth="121.79998779296875" text="DATA DE GERAÇÃO" />
+                              <TableColumn fx:id="columDescontoCup" prefWidth="112.20001220703125" text="DESCONTO %" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="353.0" layoutY="104.0" mnemonicParsing="false" onAction="#vaiIncluirCup" text="INCLUIR" />
+                        <Button layoutX="286.0" layoutY="104.0" mnemonicParsing="false" onAction="#vaiEditarCup" text="EDITAR" />
+                        <Button layoutX="213.0" layoutY="104.0" mnemonicParsing="false" onAction="#vaiExcluirCup" text="EXCLUIR" />
+                        <Button layoutX="145.0" layoutY="104.0" mnemonicParsing="false" onAction="#vaiVotarCup" text="VOLTAR" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="DADOS CUPOM">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="326.0" prefWidth="421.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="22.0" text="DADOS DE USO DOS CUPONS" />
+                        <TableView fx:id="tableDadosCupxUsu" layoutX="-1.0" layoutY="63.0" onMouseReleased="#VaiSentarDadosTxtField" prefHeight="247.0" prefWidth="419.0">
+                          <columns>
+                              <TableColumn fx:id="columDadosID" prefWidth="60.000001549720764" text="ID" />
+                            <TableColumn fx:id="columDadosCupom" prefWidth="103.60001373291016" text="CUPOM" />
+                              <TableColumn fx:id="columDadosDataCriacao" prefWidth="122.79998779296875" text="DATA DE USO" />
+                              <TableColumn fx:id="columDadosCriador" prefWidth="133.20001220703125" text="CRIADOR" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

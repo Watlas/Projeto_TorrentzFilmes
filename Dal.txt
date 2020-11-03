@@ -1,0 +1,12 @@
+FAZERES
+CLASSES DAL	    APP
+administrador <OK>   ok   
+categoria     <OK>   ok
+contrata      <OK>	
+cupom	      <OK>   ok
+filme         <OK>   ok
+mantemFilme   <OK>   OK
+manteCupom    <OK>   ok
+Plano         <OK>   ok
+Usuario       <OK>
+Vizualiza     <OK>
