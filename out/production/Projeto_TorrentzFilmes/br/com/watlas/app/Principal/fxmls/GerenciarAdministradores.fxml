@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="274.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLogin">
+   <children>
+      <Button fx:id="btnCadCriarConta" layoutX="454.0" layoutY="197.0" mnemonicParsing="false" onAction="#CriarConta" text="CRIAR CONTA" />
+      <Button fx:id="btnCadVoltar" layoutX="312.0" layoutY="197.0" mnemonicParsing="false" onAction="#VoltarTelaLogin" text="VOLTAR" />
+      <PasswordField fx:id="txtCadSenha2" layoutX="351.0" layoutY="143.0" />
+      <PasswordField fx:id="txtCadSenha" layoutX="114.0" layoutY="143.0" />
+      <TextField fx:id="txtCadEmail" layoutX="114.0" layoutY="96.0" />
+      <TextField fx:id="txtCadNome" layoutX="114.0" layoutY="45.0" />
+      <Label layoutX="34.0" layoutY="49.0" text="NOME" />
+      <Label layoutX="34.0" layoutY="100.0" text="EMAIL" />
+      <Label layoutX="34.0" layoutY="147.0" text="SENHA" />
+      <Label layoutX="270.0" layoutY="147.0" text="CONFIRMAR" />
+      <Label layoutX="212.0" layoutY="14.0" text="CADASTRO DE ADMINISTRADOR" />
+   </children>
+</AnchorPane>
