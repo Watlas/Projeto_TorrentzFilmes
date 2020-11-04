@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -110,7 +111,9 @@ public class ControleCategoria implements Initializable {
     }
 
     public void vaiVoltarTela(ActionEvent actionEvent) throws Exception {
+
         Mainapp.mudarTela("gerenciafilmes");
+
     }
 
     public void vaiPesquisa(KeyEvent keyEvent)throws Exception {

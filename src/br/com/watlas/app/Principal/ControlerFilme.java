@@ -19,6 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -29,6 +30,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControlerFilme implements Initializable {
+    public Button btnCadCategoria;
 
     //OBJETOS UTEIS
 
@@ -56,7 +58,6 @@ public class ControlerFilme implements Initializable {
     private MantemFilme mantemFilme;
     private List<Filme> listaFilmes;
     private ObservableList<Filme> listaFilmesObersable;
-    public static Administrador administrador;
     //OBJETO BLL
     private FilmeBll filmeBll;
     private CategoriaBll categoriaBll;
@@ -69,6 +70,8 @@ public class ControlerFilme implements Initializable {
             filmeBll = new FilmeBll();
             filme = new Filme();
             categoria = new Categoria();
+            mantemFilme = new MantemFilme();
+            mantemFilmeBll = new MantemFilmeBll();
             atualizarGridFilmes();
             popularCombox();
         } catch (Exception e) {
@@ -80,9 +83,7 @@ public class ControlerFilme implements Initializable {
 
     }
 
-    public void setAdministrador(Administrador administrador){
-        this.administrador = administrador;
-    }
+
 
 
     public void bntactionAdicionar(ActionEvent actionEvent) {
@@ -102,9 +103,9 @@ public class ControlerFilme implements Initializable {
             filme = (Filme) filmeBll.getByNome(txtFilTitulo.getText());
 
             //SETANDO TABLE MANTEM_FILME
-            mantemFilme.setMantemFilme_adm_iden(administrador);
+            mantemFilme.setMantemFilme_adm_iden(ControlerLogin.administrador);
             mantemFilme.setMantemFilme_fil_iden(filme);
-
+            mantemFilmeBll.Add(mantemFilme);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("FILME ADICIONADO");
@@ -178,6 +179,7 @@ public class ControlerFilme implements Initializable {
             dialogoErro.setHeaderText("NAO FOI POSIVEL ADICIONAR");
             dialogoErro.setContentText(e.getMessage());
             dialogoErro.showAndWait();
+            System.out.println(e.getMessage());
 
         }
     }
@@ -255,9 +257,6 @@ public class ControlerFilme implements Initializable {
             comboCategoria.setValue(filme.getFilme_cat_iden().getCategoria_nome());
             panelImagem.setImage(new Image("file:///" + filme.getFilme_capa()));
 
-            //getValue devolve o selecionado
-
-
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("INICIALIZAR");
@@ -299,6 +298,7 @@ public class ControlerFilme implements Initializable {
 
     public void vaiAbrircadastroCat(ActionEvent actionEvent) throws Exception {
         Mainapp.mudarTela("gerenciarcategoria");
+
     }
     private void limparCampos(){
         txtFilTitulo.setText("");
@@ -307,5 +307,10 @@ public class ControlerFilme implements Initializable {
         txtfilSintopse.setText("");
         txtFilCapa.setText("");
 
+    }
+
+
+    public void vaiAtualizarCombo(MouseEvent mouseEvent)throws Exception {
+        popularCombox();
     }
 }

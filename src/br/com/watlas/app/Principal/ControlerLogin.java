@@ -23,7 +23,7 @@ public class ControlerLogin {
     public PasswordField txtLoginSenha;
     Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
     //OBJETO DE CLASSES CONCRETAS
-    private Administrador administrador = null;
+    static Administrador administrador = null;
     private AdministradorDal administradorDal = null;
 
 
@@ -40,8 +40,7 @@ public class ControlerLogin {
 
 
             if (administrador.getSenha().equals(txtLoginSenha.getText())) {
-                com.setAdm(administrador);
-                conf.setAdministrador(administrador);
+
                 Mainapp.mudarTela("teladeselecao");
 
             } else {

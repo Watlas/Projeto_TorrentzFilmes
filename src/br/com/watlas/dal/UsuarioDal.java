@@ -189,5 +189,36 @@ public class UsuarioDal implements ICRUD_GENERIC {
         return lista;
     }
 
+    public List getByNomePesquisa(String nome) throws Exception {
+        CupomDal dal = new CupomDal();
+        String sql = "SELECT * FROM usuario WHERE usu_nome LIKE '%"+nome+"%'";
+
+        List<Usuario> lista = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
+            preparedStatement.setString(1,nome);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                usuario = new Usuario();
+                usuario.setUsuario_iden(rs.getInt("usu_iden"));
+                usuario.setCpf(rs.getString("usu_cpf"));
+                usuario.setEmail(rs.getString("usu_email"));
+                usuario.setSenha(rs.getString("usu_senha"));
+                usuario.setNome(rs.getString("usu_nome"));
+
+                //COMP.
+                int ids = rs.getInt("usu_cup_iden");
+                Cupom cupom = (Cupom) dal.getById(ids);
+                usuario.setCupom(cupom);
+
+                lista.add(usuario);
+
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        return lista;
+    }
+
 
 }

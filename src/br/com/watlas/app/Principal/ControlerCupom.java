@@ -34,23 +34,19 @@ public class ControlerCupom implements Initializable {
     public TableColumn<Cupom, String> columDescontoCup;
     public TableColumn<Cupom, String> columNomeCupom;
     //TABLE DE DADOS
-//    public TableView<Usuario> tableDadosCupxUsu;
-//    public TableColumn<Cupom, String> columDadosCupom;
-//    public TableColumn<Cupom, String> columDadosDataCriacao;
-//    public TableColumn<MantenCupom, String> columDadosCriador;
-//    public TableColumn<Usuario, String> columDadosID;
-//    public TableColumn<Administrador, String> columNomeCupom;
+    public TableView<MantenCupom> tableDadosCupxUsu;
+    public TableColumn<MantenCupom, String> columDadosID;
+    public TableColumn<MantenCupom, String> columDadosCupom;
+    public TableColumn<MantenCupom, String> columDadosDataCriacao;
+    public TableColumn<MantenCupom, String> columDadosCriador;
 
     //CONCRETAS
-
-    Cupom cupom;
-    MantenCupom mantenCupom;
-    static Administrador administrador;
+    private Cupom cupom;
+    private MantenCupom mantenCupom;
     //BLL
     UsuarioBll usuarioBll;
     private MantemCupomBll mantemCupomBll;
     private CupomBll cupomBll;
-
     //UTEIS
     private ObservableList<Cupom> cupomObservableList;
     private List<Cupom> cupomList;
@@ -67,15 +63,12 @@ public class ControlerCupom implements Initializable {
             cupomBll = new CupomBll();
             mantenCupom = new MantenCupom();
             mantemCupomBll = new MantemCupomBll();
+            atualizarGridDados();
             atualizarGridCup();
         } catch (Exception e) {
 
         }
     }
-    public void setAdm(Administrador administrador){
-        this.administrador = administrador;
-    }
-
 
     public void vaiIncluirCup(ActionEvent actionEvent) {
         try {
@@ -89,17 +82,18 @@ public class ControlerCupom implements Initializable {
 
             //SETANDO NA TABLE DE MANTEM_CUPOM
             mantenCupom.setMantemcup_cup_iden(cupom);
-            mantenCupom.setMantemcup_adm_iden(administrador);
+            mantenCupom.setMantemcup_adm_iden(ControlerLogin.administrador);
             mantemCupomBll.Add(mantenCupom);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("CUPOM FOI ADICIONADO");
-            dialogoInfo.setContentText("categoria '"+cupom.getNome() + "' foi adicionado!");
+            dialogoInfo.setContentText("categoria '" + cupom.getNome() + "' foi adicionado!");
             dialogoInfo.showAndWait();
             atualizarGridCup();
             limparCampos();
 
-        }catch (Exception e){
+
+        } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO INCLUIR");
             dialogoErro.setContentText(e.getMessage());
@@ -117,12 +111,12 @@ public class ControlerCupom implements Initializable {
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("CUPOM APAGADO");
-            dialogoInfo.setContentText("categoria '"+cupom.getNome() + "' foi APAGADO!");
+            dialogoInfo.setContentText("categoria '" + cupom.getNome() + "' foi APAGADO!");
             dialogoInfo.showAndWait();
             atualizarGridCup();
             limparCampos();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO EXCLUIR");
             dialogoErro.setContentText(e.getMessage());
@@ -142,12 +136,12 @@ public class ControlerCupom implements Initializable {
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("CUPOM EDITADO");
-            dialogoInfo.setContentText("categoria '"+cupom.getNome() + "' foi editado");
+            dialogoInfo.setContentText("categoria '" + cupom.getNome() + "' foi editado");
             dialogoInfo.showAndWait();
             atualizarGridCup();
             limparCampos();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO EDITAR");
             dialogoErro.setContentText(e.getMessage());
@@ -160,7 +154,7 @@ public class ControlerCupom implements Initializable {
         Mainapp.mudarTela("teladeselecao");
     }
 
-    private void atualizarGridCup() throws Exception{
+    private void atualizarGridCup() throws Exception {
         cupomList = cupomBll.getAll();
         columID.setCellValueFactory(objeto -> new SimpleStringProperty(objeto.getValue().getCupom_iden() + ""));
         columNomeCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome() + ""));
@@ -168,7 +162,22 @@ public class ControlerCupom implements Initializable {
         columDescontoCup.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCupom_porcentagem() + ""));
         cupomObservableList = FXCollections.observableArrayList(cupomList);
         tableCup.setItems(cupomObservableList);
+        atualizarGridDados();
 
+
+    }
+
+    private void atualizarGridDados() throws Exception {
+        //LIST
+        List<MantenCupom> mantenCupomList = mantemCupomBll.getAll();
+        ObservableList<MantenCupom> mantenCupomObservableList;
+
+        columDadosID.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemCupom_iden()+""));
+        columDadosCriador.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_adm_iden().getAdm_nome()));
+        columDadosCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_cup_iden().getNome()));
+        columDadosDataCriacao.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_cup_iden().getCupom_DataGeracao()+""));
+        mantenCupomObservableList = FXCollections.observableList(mantenCupomList);
+        tableDadosCupxUsu.setItems(mantenCupomObservableList);
     }
 
 
@@ -176,7 +185,7 @@ public class ControlerCupom implements Initializable {
         try {
             id = tableCup.getSelectionModel().getSelectedItem().getCupom_iden();
             txtNomeCup.setText(tableCup.getSelectionModel().getSelectedItem().getNome());
-            txtDescontoCup.setText(tableCup.getSelectionModel().getSelectedItem().getCupom_porcentagem()+"");
+            txtDescontoCup.setText(tableCup.getSelectionModel().getSelectedItem().getCupom_porcentagem() + "");
 
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
@@ -187,7 +196,7 @@ public class ControlerCupom implements Initializable {
         }
     }
 
-    public void limparCampos(){
+    public void limparCampos() {
         txtNomeCup.setText("");
         txtDescontoCup.setText("");
     }

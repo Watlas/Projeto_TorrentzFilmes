@@ -122,6 +122,7 @@ public class AdministradorDal<T> implements ICRUD_GENERIC<T> {
                 administrador.setAdm_email(rs.getString("adm_email"));
                 administrador.setAdm_iden(rs.getInt("adm_iden"));
                 administrador.setSenha(rs.getString("adm_senha"));
+
             }
 
         } catch (Exception e) {

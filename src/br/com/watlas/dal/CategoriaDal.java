@@ -113,8 +113,6 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
             if(rs.next()){
                 categoria.setCategoria_iden(rs.getInt("cat_iden"));
                 categoria.setCategoria_nome(rs.getString("cat_nome"));
-
-
             }
         }catch (Exception e){
 

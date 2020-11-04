@@ -66,4 +66,12 @@ public class UsuarioBll implements ICRUD_GENERIC {
             throw e;
         }
     }
+    public List getByNomePesquisa(String nome) throws Exception {
+        try {
+            return dal.getByNomePesquisa(nome);
+        }catch (Exception e){
+            throw e;
+        }
+
+    }
 }

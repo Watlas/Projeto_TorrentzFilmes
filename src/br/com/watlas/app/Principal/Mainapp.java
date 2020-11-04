@@ -5,14 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class Mainapp extends Application {
 
     private static Stage stage;
 
-    private  static Scene LoginAdm;
+    private static Scene LoginAdm;
     private static Scene CriarAdm;
-    private static  Scene menuSelecao;
+    private static Scene menuSelecao;
     private static Scene gerenciadorFilmes;
     private static Scene gerenciarCategorias;
     private static Scene gerenciarCupons;
@@ -24,14 +25,14 @@ public class Mainapp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         primaryStage.setTitle("TORRENTZ FILMES");
 
         Parent fxmlLogin = FXMLLoader.load(getClass().getResource("fxmls/login.fxml"));
         LoginAdm = new Scene(fxmlLogin, 238, 146);
 
-        Parent fxmlcadastrarAdm =  FXMLLoader.load(getClass().getResource("fxmls/GerenciarAdministradores.fxml"));
+        Parent fxmlcadastrarAdm = FXMLLoader.load(getClass().getResource("fxmls/GerenciarAdministradores.fxml"));
         CriarAdm = new Scene(fxmlcadastrarAdm);
 
         Parent fxmlTelaDeSelecao = FXMLLoader.load(getClass().getResource("fxmls/TelaDeSelecao_adm.fxml"));
@@ -43,21 +44,23 @@ public class Mainapp extends Application {
         Parent fxmltGerenciarCategoria = FXMLLoader.load(getClass().getResource("fxmls/GerenciarCategorias.fxml"));
         gerenciarCategorias = new Scene(fxmltGerenciarCategoria);
 
-        Parent fxmlGerenciarCupons =  FXMLLoader.load(getClass().getResource("fxmls/GerenciadorDeCupom.fxml"));
+        Parent fxmlGerenciarCupons = FXMLLoader.load(getClass().getResource("fxmls/GerenciadorDeCupom.fxml"));
         gerenciarCupons = new Scene(fxmlGerenciarCupons);
 
         Parent fxmlGerenciarPlanos = FXMLLoader.load(getClass().getResource("fxmls/GerenciadorDePlanos.fxml"));
         gerenciarPlanos = new Scene(fxmlGerenciarPlanos);
 
-        Parent fxmlGerenciarUsuarioADM =  FXMLLoader.load(getClass().getResource("fxmls/GerenciadorDeUsuarios.fxml"));
+        Parent fxmlGerenciarUsuarioADM = FXMLLoader.load(getClass().getResource("fxmls/GerenciadorDeUsuarios.fxml"));
         gerenciarUsuario_ADM = new Scene(fxmlGerenciarUsuarioADM);
 
         primaryStage.setScene(LoginAdm);
         primaryStage.show();
 
     }
+
     public static void mudarTela(String scr) throws Exception {
-        switch (scr){
+
+        switch (scr) {
             case "main":
                 stage.setScene(LoginAdm);
                 break;
@@ -67,7 +70,7 @@ public class Mainapp extends Application {
             case "teladeselecao":
                 stage.setScene(menuSelecao);
                 break;
-            case"gerenciafilmes":
+            case "gerenciafilmes":
                 stage.setScene(gerenciadorFilmes);
                 break;
             case "gerenciarcategoria":
@@ -76,7 +79,7 @@ public class Mainapp extends Application {
             case "gerenciadorCupons":
                 stage.setScene(gerenciarCupons);
                 break;
-            case"gerenciarPlanos":
+            case "gerenciarPlanos":
                 stage.setScene(gerenciarPlanos);
                 break;
             case "gerenciarUsuario":

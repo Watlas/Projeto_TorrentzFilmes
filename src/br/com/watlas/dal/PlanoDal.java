@@ -149,6 +149,7 @@ public class PlanoDal implements ICRUD_GENERIC {
             }
         } catch (Exception e) {
             throw e;
+
         }
         return lista;
     }

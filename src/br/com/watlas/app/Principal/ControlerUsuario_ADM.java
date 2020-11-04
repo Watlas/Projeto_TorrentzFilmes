@@ -19,19 +19,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ControlerUsuario_ADM<T> implements Initializable {
+public class ControlerUsuario_ADM implements Initializable {
     public TextField txtNome;
     public TextField txtEmail;
     public TextField txtCpf;
     public PasswordField txtSenha;
     public PasswordField txtSenhaConfirmar;
-    public TableView<T> tableUsuario;
+    public TableView<Usuario> tableUsuario;
     public TableColumn<Usuario, String> columId;
     public TableColumn<Usuario, String> columNome;
     public TableColumn<Usuario, String> columEmail;
     public TableColumn<Usuario, String> columCpf;
-    public TableColumn<Cupom, String> columCupom;
+    public TableColumn<Usuario, String> columCupom;
     public ComboBox comboCupom;
+    public TextField txtPesquisa;
 
 
     //BLL
@@ -41,6 +42,7 @@ public class ControlerUsuario_ADM<T> implements Initializable {
     Cupom cupom;
     Usuario usuario;
     //UTEIS
+    private int id;
     Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
     Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
 
@@ -61,11 +63,30 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
     public void vaiIncluir(ActionEvent actionEvent) {
         try {
+            usuario.setNome(txtNome.getText());
+            usuario.setEmail(txtEmail.getText());
+            usuario.setSenha(txtSenha.getText());
+            usuario.setCpf(txtCpf.getText());
+            cupom = (Cupom) cupomBll.getByNome(String.valueOf(comboCupom.valueProperty().get()));
+            usuario.setCupom(cupom);
+            if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
+                dialogoErro.setTitle("ERRO");
+                dialogoErro.setHeaderText("ERRO AO INCLUIR");
+                dialogoErro.setContentText("SENHAS NAO CONFEREM");
+                dialogoErro.showAndWait();
+
+            } else {
+                usuarioBll.Add(usuario);
+                dialogoInfo.setTitle("INFORMAÇÃO");
+                dialogoInfo.setHeaderText("USUARIO ADICIONADO");
+                dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi adicionado!");
+                dialogoInfo.showAndWait();
+
+                atualizarGrid();
+                limparCampos();
+            }
 
 
-
-            atualizarGrid();
-            limparCampos();
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO INCLUIR");
@@ -77,6 +98,12 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
     public void vaiExcluir(ActionEvent actionEvent) {
         try {
+            usuarioBll.Delete(id);
+
+            dialogoInfo.setTitle("INFORMAÇÃO");
+            dialogoInfo.setHeaderText("USUARIO APAGADO");
+            dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi adicionado!");
+            dialogoInfo.showAndWait();
 
             atualizarGrid();
             limparCampos();
@@ -91,6 +118,29 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
     public void vaiEditar(ActionEvent actionEvent) {
         try {
+            usuario.setUsuario_iden(id);
+            usuario.setNome(txtNome.getText());
+            usuario.setEmail(txtEmail.getText());
+            usuario.setSenha(txtSenha.getText());
+            usuario.setCpf(txtCpf.getText());
+            cupom = (Cupom) cupomBll.getByNome(String.valueOf(comboCupom.valueProperty().get()));
+            usuario.setCupom(cupom);
+            if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
+                dialogoErro.setTitle("ERRO");
+                dialogoErro.setHeaderText("ERRO AO EDITAR");
+                dialogoErro.setContentText("SENHAS NAO CONFEREM");
+                dialogoErro.showAndWait();
+
+            } else {
+                usuarioBll.Update(usuario);
+                dialogoInfo.setTitle("INFORMAÇÃO");
+                dialogoInfo.setHeaderText("USUARIO ADICIONADO");
+                dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi adicionado!");
+                dialogoInfo.showAndWait();
+
+                atualizarGrid();
+                limparCampos();
+            }
 
             atualizarGrid();
             limparCampos();
@@ -105,6 +155,7 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
     public void vaiVoltar(ActionEvent actionEvent) {
         try {
+            Mainapp.mudarTela("teladeselecao");
 
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
@@ -117,7 +168,7 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
     public void vaiPesquisarNome(KeyEvent keyEvent) {
         try {
-
+            atualizarGridPesquisa();
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO PESQUISAR ESSE NOME");
@@ -129,7 +180,13 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
     public void vaiSetarDadosNoTxt(MouseEvent mouseEvent) {
         try {
-
+            id = tableUsuario.getSelectionModel().getSelectedItem().getUsuario_iden();
+            txtNome.setText(tableUsuario.getSelectionModel().getSelectedItem().getNome());
+            txtEmail.setText(tableUsuario.getSelectionModel().getSelectedItem().getEmail());
+            txtCpf.setText(tableUsuario.getSelectionModel().getSelectedItem().getCpf());
+            txtSenha.setText("***************");
+            txtSenhaConfirmar.setText("***************");
+            comboCupom.setValue(usuario.getCupom().getNome());
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO SETAR DADOS NO TXT");
@@ -142,22 +199,20 @@ public class ControlerUsuario_ADM<T> implements Initializable {
     private void atualizarGrid() {
 
         try {
-            List<Cupom> listaCupom = cupomBll.getAll();
-            ObservableList<Usuario> usuarioObservableList;
-            ObservableList<Cupom> cupomObservableList;
             List<Usuario> usuarioList = usuarioBll.getAll();
+
+            ObservableList<Usuario> usuarioObservableList;
 
             columNome.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome()));
             columCpf.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCpf()));
             columEmail.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getEmail()));
             columCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome()));
-        //    columId.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getUsuario_iden()+""));
+            columId.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getUsuario_iden() + ""));
 
-           // columCupom.
-            usuarioObservableList =  FXCollections.observableArrayList(usuarioList);
-            cupomObservableList =  FXCollections.observableArrayList(listaCupom);
-            tableUsuario.setItems((ObservableList<T>) usuarioObservableList);
-            tableUsuario.setItems((ObservableList<T>) cupomObservableList);
+
+            usuarioObservableList = FXCollections.observableArrayList(usuarioList);
+            tableUsuario.setItems(usuarioObservableList);
+
 
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
@@ -170,7 +225,22 @@ public class ControlerUsuario_ADM<T> implements Initializable {
     }
 
     private void atualizarGridPesquisa() {
+
         try {
+            List<Usuario> usuarioList = usuarioBll.getByNomePesquisa(txtPesquisa.getText());
+
+            ObservableList<Usuario> usuarioObservableList;
+
+            columNome.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome()));
+            columCpf.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCpf()));
+            columEmail.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getEmail()));
+            columCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome()));
+            columId.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getUsuario_iden() + ""));
+
+
+            usuarioObservableList = FXCollections.observableArrayList(usuarioList);
+            tableUsuario.setItems(usuarioObservableList);
+
 
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
@@ -182,18 +252,23 @@ public class ControlerUsuario_ADM<T> implements Initializable {
 
 
     }
-    private void limparCampos(){
+
+    private void limparCampos() {
         txtNome.setText("");
         txtCpf.setText("");
         txtEmail.setText("");
         txtSenha.setText("");
         txtSenhaConfirmar.setText("");
     }
-    private void popularCombox()throws Exception{
+
+    private void popularCombox() throws Exception {
         List<Cupom> cupomList = cupomBll.getAll();
         for (Cupom cup : cupomList) {
-            comboCupom.getItems().add(cup.getNome());
+           comboCupom.getItems().add(cup.getNome());
         }
     }
 
+    public void vaiAtualizarCombo(MouseEvent mouseEvent)throws Exception {
+        popularCombox();
+    }
 }

@@ -1,15 +1,17 @@
 package br.com.watlas.bll;
 
+import br.com.watlas.dal.MantemCupomDal;
+import br.com.watlas.dal.MantemFilmeDal;
 import br.com.watlas.util.ICRUD_GENERIC;
 
 import java.util.List;
 
 public class MantemFilmeBll implements ICRUD_GENERIC {
 
-    MantemFilmeBll dal = null;
+    MantemFilmeDal dal ;
 
     public MantemFilmeBll()throws Exception{
-        dal = new MantemFilmeBll();
+        dal = new MantemFilmeDal();
     }
 
     @Override
