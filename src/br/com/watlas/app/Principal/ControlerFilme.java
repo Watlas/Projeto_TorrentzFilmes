@@ -269,7 +269,7 @@ public class ControlerFilme implements Initializable {
 
     public void popularCombox() throws Exception {
         List<Categoria> categoriaList = categoriaBll.getAll();
-        comboCategoria.getItems().removeAll();
+        comboCategoria.getItems().clear();
         for (Categoria cat : categoriaList) {
             comboCategoria.getItems().add(cat.getCategoria_nome());
         }
@@ -312,5 +312,7 @@ public class ControlerFilme implements Initializable {
 
     public void vaiAtualizarCombo(MouseEvent mouseEvent)throws Exception {
         popularCombox();
+
+
     }
 }

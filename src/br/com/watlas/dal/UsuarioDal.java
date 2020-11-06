@@ -195,9 +195,8 @@ public class UsuarioDal implements ICRUD_GENERIC {
 
         List<Usuario> lista = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setString(1,nome);
-            ResultSet rs = preparedStatement.executeQuery();
+            Statement statement = conexao.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 usuario = new Usuario();
                 usuario.setUsuario_iden(rs.getInt("usu_iden"));

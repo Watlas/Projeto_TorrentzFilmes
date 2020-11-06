@@ -108,7 +108,7 @@ public class ControlerPlanos implements Initializable {
             plano.setPlano_preco(Double.parseDouble(txtPreco.getText()));
             plano.setPlano_acessSimutaneo(Integer.parseInt(txtAcessoSimutaneo.getText()));
 
-            planoBll.Add(plano);
+            planoBll.Update(plano);
 
 
             dialogoInfo.setTitle("INFORMAÇÃO");

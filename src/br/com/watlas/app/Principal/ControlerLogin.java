@@ -114,7 +114,7 @@ public class ControlerLogin {
     }
 
     public void entrarEmGerenciadofilme(ActionEvent actionEvent) throws Exception {
-        Mainapp.mudarTela("gerenciafilmes");
+       Mainapp.mudarTela("gerenciafilmes");
     }
 
     public void entrarEmGerenciarplanos(ActionEvent actionEvent) throws Exception {

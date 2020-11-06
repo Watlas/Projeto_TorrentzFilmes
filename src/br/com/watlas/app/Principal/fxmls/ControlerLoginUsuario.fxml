@@ -1,17 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="br.com.watlas.app.Principal.ControlerLoginUsuario"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="206.0" prefWidth="353.0" style="-fx-background-color: #555d;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLoginUsuario">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="46.0" prefWidth="353.0" style="-fx-background-color: #3D4444;">
+         <children>
+            <Label layoutX="152.0" layoutY="10.0" prefHeight="26.0" prefWidth="49.0" text="LOGIN" textAlignment="CENTER" textFill="#f8f8f3" textOverrun="CLIP">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <effect>
+                  <DisplacementMap>
+                     <mapData>
+                        <FloatMap />
+                     </mapData>
+                  </DisplacementMap>
+               </effect>
+            </Label>
+         </children></AnchorPane>
+      <ImageView fitHeight="33.0" fitWidth="30.0" layoutX="305.0" layoutY="164.0" onMouseClicked="#vaiEntrar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/lgin.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/usuario.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/senha.png" />
+         </image></ImageView>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="256.0" layoutY="164.0" onMouseClicked="#vaiVoltar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/botao-voltar.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtUsuarioLogin" layoutX="65.0" layoutY="78.0" prefHeight="26.0" prefWidth="269.0" promptText="Usuario..." />
+      <TextField fx:id="txtsenhavisible" layoutX="65.0" layoutY="122.0" prefHeight="26.0" prefWidth="270.0" promptText="senha..." />
+      <PasswordField fx:id="txtSenhaLogin" layoutX="65.0" layoutY="122.0" prefHeight="26.0" prefWidth="270.0" promptText="Senha..." />
+      <CheckBox fx:id="checkBoxSenha" layoutX="65.0" layoutY="170.0" mnemonicParsing="false" onAction="#vaiExibirSenha" prefHeight="18.0" prefWidth="97.0" text="Exibir senha" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="200.0" layoutY="164.0" onMouseClicked="#vaiCadastrarUsuario" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/adicionar-usuario.png" />
+         </image></ImageView>
+   </children>
 </AnchorPane>

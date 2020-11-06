@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class Mainapp extends Application {
 
@@ -19,6 +18,10 @@ public class Mainapp extends Application {
     private static Scene gerenciarCupons;
     private static Scene gerenciarPlanos;
     private static Scene gerenciarUsuario_ADM;
+    private static Scene loginUsuario;
+    private static Scene cadastroDeusuario;
+    private static Scene filmesUsuario;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -53,7 +56,17 @@ public class Mainapp extends Application {
         Parent fxmlGerenciarUsuarioADM = FXMLLoader.load(getClass().getResource("fxmls/GerenciadorDeUsuarios.fxml"));
         gerenciarUsuario_ADM = new Scene(fxmlGerenciarUsuarioADM);
 
-        primaryStage.setScene(LoginAdm);
+        Parent fxmlCadastroUsuario = FXMLLoader.load(getClass().getResource("fxmls/ControlerCadUsuario.fxml"));
+        cadastroDeusuario = new Scene(fxmlCadastroUsuario);
+
+        Parent fxmlLoginUsuario = FXMLLoader.load(getClass().getResource("fxmls/ControlerLoginUsuario.fxml"));
+        loginUsuario = new Scene(fxmlLoginUsuario);
+
+        Parent fxmlFimesUsuario = FXMLLoader.load(getClass().getResource("fxmls/FilmesUsuario.fxml"));
+        filmesUsuario = new Scene(fxmlFimesUsuario);
+
+
+        primaryStage.setScene(filmesUsuario);
         primaryStage.show();
 
     }
@@ -85,6 +98,14 @@ public class Mainapp extends Application {
             case "gerenciarUsuario":
                 stage.setScene(gerenciarUsuario_ADM);
                 break;
+            case "loginUsuario":
+                stage.setScene(loginUsuario);
+                break;
+            case "cadastroDeUsuario":
+                stage.setScene(cadastroDeusuario);
+                break;
+            case "filmesUsuario":
+                stage.setScene(filmesUsuario);
 
 
         }
