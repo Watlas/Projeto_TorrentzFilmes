@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="353.0" prefWidth="536.0" style="-fx-background-color: #165067;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerCadastroDeUsuario">
+   <children>
+      <AnchorPane prefHeight="62.0" prefWidth="536.0" style="-fx-background-color: #0c1f26;">
+         <children>
+            <Label layoutX="19.0" layoutY="-4.0" prefHeight="62.0" prefWidth="225.0" text="CADASTRO " textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="26.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="24.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/email.png" />
+         </image></ImageView>
+      <ImageView fitHeight="49.0" fitWidth="36.0" layoutX="24.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/nome.png" />
+         </image></ImageView>
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="24.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/cpf.png" />
+         </image></ImageView>
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="24.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/senha.png" />
+         </image></ImageView>
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="268.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/senha.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtNome" layoutX="77.0" layoutY="82.0" prefHeight="28.0" prefWidth="173.0" promptText="NOME.." />
+      <TextField fx:id="txtEmail" layoutX="77.0" layoutY="126.0" prefHeight="28.0" prefWidth="173.0" promptText="EMAIL..." />
+      <TextField fx:id="txtCpf" layoutX="77.0" layoutY="172.0" prefHeight="28.0" prefWidth="173.0" promptText="CPF..." />
+      <PasswordField fx:id="txtSenha" layoutX="77.0" layoutY="224.0" prefHeight="26.0" prefWidth="174.0" promptText="SENHA..." />
+      <PasswordField fx:id="txtSenhaConfirmar" layoutX="322.0" layoutY="224.0" prefHeight="26.0" prefWidth="174.0" promptText="CONFIRMAR SENHA..." />
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="467.0" layoutY="303.0" onMouseClicked="#vaiCriarUsuario" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/adicionar-usuario.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="399.0" layoutY="303.0" onMouseClicked="#vaiVoltar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/botao-voltar.png" />
+         </image></ImageView>
+      <TextField layoutX="77.0" layoutY="277.0" prefHeight="26.0" prefWidth="174.0" promptText="CUPOM PROMOCIONAL" />
+      <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="24.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/cupom.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
