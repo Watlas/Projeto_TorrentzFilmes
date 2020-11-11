@@ -1,0 +1,12 @@
+
+CLASSES        DAL   APP    BLL
+administrador <OK>   <OK>
+categoria     <OK>   <OK>
+contrata      <OK>   <OK>
+cupom	      <OK>   <OK>
+filme         <OK>   <OK>   <OK>
+mantemFilme   <OK>   <OK>
+manteCupom    <OK>   <OK>
+Plano         <OK>   <OK>
+Usuario       <OK>   <OK>   <OK>
+Vizualiza     <OK>   <OK>
