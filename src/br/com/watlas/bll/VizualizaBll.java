@@ -67,4 +67,19 @@ public class VizualizaBll implements ICRUD_GENERIC {
             throw e;
         }
     }
+
+    public Object getFilmeUsuario(int usu_iden, int usu_film) throws Exception {
+        try {
+            return dal.getFilmeUsuario(usu_iden,usu_film );
+        }catch (Exception e){
+            throw e;
+        }
+    }
+    public List getAllUsu(int n) throws Exception {
+        try {
+                return dal.getAllUsu(n);
+        }catch (Exception e){
+            throw e;
+        }
+    }
 }

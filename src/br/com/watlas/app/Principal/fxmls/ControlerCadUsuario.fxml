@@ -50,7 +50,7 @@
          <image>
             <Image url="@../image/botao-voltar.png" />
          </image></ImageView>
-      <TextField layoutX="77.0" layoutY="277.0" prefHeight="26.0" prefWidth="174.0" promptText="CUPOM PROMOCIONAL" />
+      <TextField fx:id="txtCupom" layoutX="77.0" layoutY="277.0" prefHeight="26.0" prefWidth="174.0" promptText="CUPOM PROMOCIONAL" />
       <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="24.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/cupom.png" />

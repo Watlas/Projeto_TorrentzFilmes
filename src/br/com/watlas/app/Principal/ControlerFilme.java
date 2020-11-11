@@ -3,11 +3,9 @@ package br.com.watlas.app.Principal;
 import br.com.watlas.bll.CategoriaBll;
 import br.com.watlas.bll.FilmeBll;
 import br.com.watlas.bll.MantemFilmeBll;
-import br.com.watlas.modal.Administrador;
-import br.com.watlas.modal.Categoria;
-import br.com.watlas.modal.Filme;
+import br.com.watlas.bll.PlanoBll;
+import br.com.watlas.modal.*;
 
-import br.com.watlas.modal.MantemFilme;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -313,6 +311,6 @@ public class ControlerFilme implements Initializable {
     public void vaiAtualizarCombo(MouseEvent mouseEvent)throws Exception {
         popularCombox();
 
-
     }
+
 }

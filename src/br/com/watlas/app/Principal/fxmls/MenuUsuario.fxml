@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="235.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerMenuUsuario">
+   <children>
+      <Button fx:id="vaiPlanos" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" onAction="#vaiPlanos" prefHeight="154.0" prefWidth="178.0" text="PLANOS" />
+      <Button fx:id="vaiFilmes" layoutX="230.0" layoutY="59.0" mnemonicParsing="false" onAction="#vaiFilmes" prefHeight="154.0" prefWidth="163.0" text="FILMES" />
+      <Label fx:id="labelNomeDousuario" layoutX="283.0" layoutY="14.0" text="NOME DO USUARIO" />
+      <Button layoutX="14.0" layoutY="10.0" mnemonicParsing="false" onAction="#vaiVoltar" text="VOLTAR" />
+   </children>
+</AnchorPane>

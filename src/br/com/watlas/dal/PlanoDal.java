@@ -173,4 +173,5 @@ public class PlanoDal implements ICRUD_GENERIC {
         }
         return lista;
     }
+
 }

@@ -19,6 +19,7 @@ public class ControlerCadastroDeUsuario implements Initializable {
     public TextField txtCpf;
     public PasswordField txtSenha;
     public PasswordField txtSenhaConfirmar;
+    public TextField txtCupom;
 
     //Concretas
     Usuario usuario;
@@ -51,14 +52,20 @@ public class ControlerCadastroDeUsuario implements Initializable {
                 usuario.setCpf(txtCpf.getText());
                 usuario.setSenha(txtSenha.getText());
                 usuario.setEmail(txtEmail.getText());
-                cupom = (Cupom) cupomBll.getByNome(txtNome.getText());
+                if(txtCupom.getText().equals("")){
+                    cupom = (Cupom) cupomBll.getByNome("nenhum");
+                }else{
+                    cupom = (Cupom) cupomBll.getByNome(txtCupom.getText());
+                }
                 usuario.setCupom(cupom);
                 usuarioBll.Add(usuario);
                 limparCampos();
+                Mainapp.mudarTela("loginUsuario");
             }
 
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             erroGeral("ERRO AO CRIAR CONTA", e.getMessage());
 
         }

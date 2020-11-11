@@ -108,9 +108,10 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
     public Object getById(int n) throws Exception {
         CategoriaDal categoriaDal = new CategoriaDal();
         String sql = "SELECT * FROM filmes WHERE fil_iden =?";
+        filme = new Filme();
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
-            preparedStatement.setObject(1, n);
+            preparedStatement.setInt(1, n);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 filme = new Filme();

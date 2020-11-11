@@ -1,6 +1,9 @@
 package br.com.watlas.app.Principal;
 
+import br.com.watlas.modal.Plano;
 import javafx.application.Application;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +24,9 @@ public class Mainapp extends Application {
     private static Scene loginUsuario;
     private static Scene cadastroDeusuario;
     private static Scene filmesUsuario;
+    private static Scene menuUsuario;
+    private static Scene planoUsuario;
+    private static Scene principal;
 
 
     public static void main(String[] args) {
@@ -62,11 +68,19 @@ public class Mainapp extends Application {
         Parent fxmlLoginUsuario = FXMLLoader.load(getClass().getResource("fxmls/ControlerLoginUsuario.fxml"));
         loginUsuario = new Scene(fxmlLoginUsuario);
 
-        Parent fxmlFimesUsuario = FXMLLoader.load(getClass().getResource("fxmls/FilmesUsuario.fxml"));
-        filmesUsuario = new Scene(fxmlFimesUsuario);
+        Parent fxmlFilmesUsuario = FXMLLoader.load(getClass().getResource("fxmls/FilmesUsuario.fxml"));
+        filmesUsuario = new Scene(fxmlFilmesUsuario);
 
+        Parent fxmlMenuUsuario = FXMLLoader.load(getClass().getResource("fxmls/MenuUsuario.fxml"));
+        menuUsuario = new Scene(fxmlMenuUsuario);
 
-        primaryStage.setScene(filmesUsuario);
+        Parent fxmlPlanoUsuario = FXMLLoader.load(getClass().getResource("fxmls/GerenciarPlanoUsuario.fxml"));
+        planoUsuario = new Scene(fxmlPlanoUsuario);
+
+        Parent fxmlPricipal = FXMLLoader.load(getClass().getResource("fxmls/TelaPrincipal.fxml"));
+        principal = new Scene(fxmlPricipal);
+
+        primaryStage.setScene(principal);
         primaryStage.show();
 
     }
@@ -105,7 +119,22 @@ public class Mainapp extends Application {
                 stage.setScene(cadastroDeusuario);
                 break;
             case "filmesUsuario":
+                Parent fxmlFilmesUsuario = FXMLLoader.load(Mainapp.class.getResource("fxmls/FilmesUsuario.fxml"));
+                filmesUsuario = new Scene(fxmlFilmesUsuario);
+
                 stage.setScene(filmesUsuario);
+                break;
+            case "menuUsuario":
+                stage.setScene(menuUsuario);
+                break;
+            case "planoUsuario":
+                Parent fxmlPlanoUsuario = FXMLLoader.load(Mainapp.class.getResource("fxmls/GerenciarPlanoUsuario.fxml"));
+                planoUsuario = new Scene(fxmlPlanoUsuario);
+                stage.setScene(planoUsuario);
+                break;
+            case "Pricipal":
+                stage.setScene(principal);
+                break;
 
 
         }

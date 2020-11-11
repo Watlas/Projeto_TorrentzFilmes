@@ -66,4 +66,20 @@ public class ContrataBll implements ICRUD_GENERIC {
             throw e;
         }
     }
+    public Object getByIdusu(int n) throws Exception {
+        try {
+            return dal.getByIdUsu(n);
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    public List getAllusu(int n) throws Exception {
+        try {
+            return dal.getAllusu(n);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
 }

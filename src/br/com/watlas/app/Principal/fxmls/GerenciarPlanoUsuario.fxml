@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerPlanoUsuario">
+   <children>
+      <TabPane prefHeight="400.0" prefWidth="519.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="PLANOS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="557.0">
+                     <children>
+                        <DatePicker fx:id="txtDateInicio" layoutX="322.0" layoutY="75.0" promptText="data de inicio" />
+                        <DatePicker fx:id="txtDateFim" layoutX="322.0" layoutY="131.0" promptText="data final" />
+                        <Label layoutX="322.0" layoutY="52.0" prefHeight="18.0" prefWidth="40.0" text="INICIO" />
+                        <Label layoutX="322.0" layoutY="108.0" text="FIM" />
+                        <Button layoutX="409.0" layoutY="258.0" mnemonicParsing="false" onAction="#vaiContratarPlano" prefHeight="100.0" prefWidth="100.0" text="CONTRATAR" />
+                        <Button layoutX="293.0" layoutY="257.0" mnemonicParsing="false" onAction="#vaiVoltar" prefHeight="100.0" prefWidth="100.0" text="VOLTAR" />
+                        <TableView fx:id="tablePlanos" layoutY="2.0" onMouseReleased="#vaiPegarDadosTable" prefHeight="355.0" prefWidth="286.0">
+                          <columns>
+                              <TableColumn fx:id="columId" prefWidth="35.200013756752014" text="ID" />
+                            <TableColumn fx:id="columNome" prefWidth="78.20001220703125" text="NOME" />
+                            <TableColumn fx:id="columAcessSimu" prefWidth="76.1999740600586" text="ACESSO SIMUTANEO" />
+                              <TableColumn fx:id="columPreco" prefWidth="95.5999755859375" text="PREÇO" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="GERENCIAR PLANO">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tablePlanoControl" layoutX="14.0" layoutY="73.0" onMouseReleased="#vaiPegarDadosGrid" prefHeight="289.0" prefWidth="495.0">
+                          <columns>
+                            <TableColumn fx:id="columControlId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="columControlNome" prefWidth="75.0" text="NOME" />
+                              <TableColumn fx:id="columControlAcess" prefWidth="75.0" text="ACESSO" />
+                              <TableColumn fx:id="columControlnicio" prefWidth="92.20001220703125" text="INICIO" />
+                              <TableColumn fx:id="columControlFIm" prefWidth="79.79998779296875" text="FIM" />
+                              <TableColumn fx:id="columControlStatus" prefWidth="97.39996337890625" text="STATUS" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#vaiControlExcluir" text="EXCLUIR" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

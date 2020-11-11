@@ -73,7 +73,7 @@ public class ControlerCupom implements Initializable {
     public void vaiIncluirCup(ActionEvent actionEvent) {
         try {
 
-            cupom.setNome(txtNomeCup.getText());
+            cupom.setNome(txtNomeCup.getText().toLowerCase());
             cupom.setCupom_porcentagem(Double.parseDouble(txtDescontoCup.getText()));
             cupom.setCupom_DataGeracao(new java.sql.Date(new java.util.Date().getTime()));
             cupomBll.Add(cupom);

@@ -62,7 +62,7 @@ public class ControlerPlanos implements Initializable {
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("Plano adicionado");
-            dialogoInfo.setContentText("Filme '"+plano.getPlano_nome() + "' foi editado!");
+            dialogoInfo.setContentText("Filme '"+plano.getPlano_nome() + "' foi adicionado!");
             dialogoInfo.showAndWait();
 
             atualizarGrid();
@@ -112,7 +112,7 @@ public class ControlerPlanos implements Initializable {
 
 
             dialogoInfo.setTitle("INFORMAÇÃO");
-            dialogoInfo.setHeaderText("Plano adicionado");
+            dialogoInfo.setHeaderText("Plano editado");
             dialogoInfo.setContentText("Filme '"+plano.getPlano_nome() + "' foi editado!");
             dialogoInfo.showAndWait();
 

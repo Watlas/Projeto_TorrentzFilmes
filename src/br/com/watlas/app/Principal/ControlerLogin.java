@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControlerLogin {
+public class ControlerLogin implements Initializable{
     //textField's da tela de CADASTRO
     public TextField txtCadNome;
     public TextField txtCadEmail;
@@ -86,6 +86,7 @@ public class ControlerLogin {
             } else {
 
                 administradorDal.Add(administrador);
+                Mainapp.mudarTela("main");
             }
 
 
@@ -129,4 +130,16 @@ public class ControlerLogin {
         Mainapp.mudarTela("gerenciarUsuario");
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void vaiVoltarLginadm(ActionEvent actionEvent)throws Exception{
+        Mainapp.mudarTela("main");
+    }
+
+    public void vaiVoltarTelaPRincipal(ActionEvent actionEvent)throws Exception {
+        Mainapp.mudarTela("Pricipal");
+    }
 }

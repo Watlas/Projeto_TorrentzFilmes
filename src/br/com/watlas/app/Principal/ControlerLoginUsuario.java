@@ -40,14 +40,18 @@ public class ControlerLoginUsuario implements Initializable {
     public void vaiEntrar(MouseEvent mouseEvent) throws Exception {
         try {
             usuario = (Usuario) usuarioBll.getByNome(txtUsuarioLogin.getText());
+            if(usuario.getSenha() ==null){
+                throw new Exception("USUARIO NAO EXISTE NO SISTEMA");
+            }
             if (usuario.getSenha().equals(txtSenhaLogin.getText())) {
-                Mainapp.mudarTela("filmesUsuario");
+                Mainapp.mudarTela("menuUsuario");
             } else {
                 erroGeral("SENHA INCORRETA", "A senha está incorreta!");
             }
 
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             erroGeral("ERRO AO FAZER LOGIN", e.getMessage());
 
         }
@@ -57,7 +61,7 @@ public class ControlerLoginUsuario implements Initializable {
 
     public void vaiVoltar(MouseEvent mouseEvent) throws Exception {
 
-        Mainapp.mudarTela("gerenciarPlanos");
+        Mainapp.mudarTela("Pricipal");
     }
 
 

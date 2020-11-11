@@ -92,6 +92,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
             ps.setObject(1, n);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
+                categoria = new Categoria();
                 categoria.setCategoria_iden(rs.getInt("cat_iden"));
                 categoria.setCategoria_nome(rs.getString("cat_nome"));
 
@@ -107,10 +108,12 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
     public Object getByNome(String nome) throws Exception {
         String sql = "SELECT * FROM categorias WHERE cat_nome =?";
         try {
+
             PreparedStatement ps = conexao.prepareStatement(sql);
             ps.setString(1, nome);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
+                categoria = new Categoria();
                 categoria.setCategoria_iden(rs.getInt("cat_iden"));
                 categoria.setCategoria_nome(rs.getString("cat_nome"));
             }

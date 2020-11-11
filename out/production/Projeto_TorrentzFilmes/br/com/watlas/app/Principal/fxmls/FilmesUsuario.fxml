@@ -5,22 +5,56 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.media.*?>
 
-<AnchorPane prefHeight="526.0" prefWidth="682.0" style="-fx-background-color: #0c1f26;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerFilmesUsuario">
+<AnchorPane prefHeight="523.0" prefWidth="706.0" style="-fx-background-color: #0c1f26;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerFilmesUsuario">
    <children>
-      <TableView fx:id="tableFilmes" onMouseReleased="#vaisetaDados" prefHeight="527.0" prefWidth="334.0" style="-fx-background-color: #35361d;">
-        <columns>
-            <TableColumn fx:id="columID" prefWidth="51.40000915527344" text="ID" />
-          <TableColumn fx:id="columNome" prefWidth="96.80001831054688" text="NOME " />
-          <TableColumn fx:id="columAno" prefWidth="49.399993896484375" text="ANO" />
-            <TableColumn fx:id="ColumCategoria" prefWidth="134.60003662109375" text="CATEGORIA" />
-        </columns>
-      </TableView>
-      <MediaView fx:id="mediaExibirFilme" fitHeight="250.0" fitWidth="390.0" layoutX="334.0" />
-      <Button fx:id="btnAssistir" layoutX="654.0" layoutY="263.0" mnemonicParsing="false" onAction="#vaiAssistir" text="ASSISTIR" />
-      <Button fx:id="bntVoltar" layoutX="350.0" layoutY="263.0" mnemonicParsing="false" onAction="#vaivoltar" text="VOLTAR" />
-      <ImageView fx:id="imageCapaFilme" fitHeight="212.0" fitWidth="200.0" layoutX="341.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true" />
-      <TextArea fx:id="txtSintopse" layoutX="549.0" layoutY="295.0" prefHeight="212.0" prefWidth="166.0" />
-      <Button fx:id="btnPausar" layoutX="441.0" layoutY="263.0" mnemonicParsing="false" onAction="#vaiPausar" text="PAUSAR" />
-      <Button fx:id="vaiParar" layoutX="549.0" layoutY="263.0" mnemonicParsing="false" onAction="#vaiParar" text="PARAR" />
+      <TabPane prefHeight="523.0" prefWidth="720.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="FILMES">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="713.0">
+                     <children>
+                                    <TableView fx:id="tableFilmes" onMouseReleased="#vaisetaDados" prefHeight="527.0" prefWidth="334.0" style="-fx-background-color: #35361d;">
+                                      <columns>
+                                          <TableColumn fx:id="columID" prefWidth="51.40000915527344" text="ID" />
+                                        <TableColumn fx:id="columNome" prefWidth="96.80001831054688" text="NOME " />
+                                        <TableColumn fx:id="columAno" prefWidth="49.399993896484375" text="ANO" />
+                                          <TableColumn fx:id="ColumCategoria" prefWidth="134.60003662109375" text="CATEGORIA" />
+                                      </columns>
+                                    </TableView>
+                                    <MediaView fx:id="mediaExibirFilme" fitHeight="200.0" fitWidth="370.0" layoutX="346.0" layoutY="14.0" />
+                                    <Button fx:id="btnAssistir" layoutX="414.0" layoutY="221.0" mnemonicParsing="false" onAction="#vaiAssistir" text="ASSISTIR" />
+                                    <Button fx:id="bntVoltar" layoutX="501.0" layoutY="221.0" mnemonicParsing="false" onAction="#vaivoltar" text="VOLTAR" />
+                                    <ImageView fx:id="imageCapaFilme" fitHeight="212.0" fitWidth="200.0" layoutX="527.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true" />
+                                    <TextArea fx:id="txtSintopse" layoutX="346.0" layoutY="282.0" prefHeight="195.0" prefWidth="166.0" />
+                                    <Button fx:id="btnPausar" layoutX="582.0" layoutY="221.0" mnemonicParsing="false" onAction="#vaiPausar" text="PAUSAR" />
+                                    <Button fx:id="vaiParar" layoutX="657.0" layoutY="221.0" mnemonicParsing="false" onAction="#vaiParar" text="PARAR" />
+                        <Label layoutX="612.0" layoutY="255.0" text="CAPA" textFill="#f5f5f5" />
+                        <Label layoutX="389.0" layoutY="264.0" text="DESCRIÇÃO" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="HISTORICO">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableFilmeControl" layoutX="-1.0" layoutY="94.0" prefHeight="398.0" prefWidth="492.0">
+                          <columns>
+                            <TableColumn fx:id="columControlIden" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="columControlFilme" prefWidth="75.0" text="FILME" />
+                              <TableColumn fx:id="columControlAno" prefWidth="75.0" text="ANO" />
+                              <TableColumn fx:id="columControlDataVisu" prefWidth="111.20002746582031" text="DATA DE VIS." />
+                              <TableColumn fx:id="columControlCompleto" prefWidth="75.0" text="COMPLETO" />
+                              <TableColumn fx:id="columControlUsuario" prefWidth="75.0" text="USUARIO" />
+                          </columns>
+                        </TableView>
+                        <ImageView fx:id="imagemControlCapa" fitHeight="150.0" fitWidth="200.0" layoutX="506.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#vaiAtualizarGridControl" text="ATUALIZAR" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+
    </children>
 </AnchorPane>
