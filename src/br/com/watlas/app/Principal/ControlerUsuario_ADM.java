@@ -67,20 +67,26 @@ public class ControlerUsuario_ADM implements Initializable {
             usuario.setEmail(txtEmail.getText());
             usuario.setSenha(txtSenha.getText());
             usuario.setCpf(txtCpf.getText());
-            cupom = (Cupom) cupomBll.getByNome(String.valueOf(comboCupom.valueProperty().get()));
-            usuario.setCupom(cupom);
-            if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
-               erroGeral("ERRO AO INCLUIR", "Senhas \nnao conferem");
-            } else {
-                usuarioBll.Add(usuario);
-                dialogoInfo.setTitle("INFORMAÇÃO");
-                dialogoInfo.setHeaderText("USUARIO ADICIONADO");
-                dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi adicionado!");
-                dialogoInfo.showAndWait();
+            if(comboCupom.getValue() == null){
+                erroGeral("PREENCHA O CAMPO CUPOM", "Escolha algum cupom para esse\nUsuario!");
+            }else{
+                cupom = (Cupom) cupomBll.getByNome(comboCupom.getValue().toString());
+                usuario.setCupom(cupom);
+                if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
+                    erroGeral("ERRO AO INCLUIR", "Senhas \nnao conferem");
+                } else {
+                    usuarioBll.Add(usuario);
+                    dialogoInfo.setTitle("INFORMAÇÃO");
+                    dialogoInfo.setHeaderText("USUARIO ADICIONADO");
+                    dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi adicionado!");
+                    dialogoInfo.showAndWait();
 
 
-                atualizarGrid();
-                limparCampos();
+                    atualizarGrid();
+                    limparCampos();
+                }
+
+
             }
 
 
@@ -105,6 +111,7 @@ public class ControlerUsuario_ADM implements Initializable {
             atualizarGrid();
             limparCampos();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO EXCLUIR");
             dialogoErro.setContentText(e.getMessage());
@@ -115,28 +122,32 @@ public class ControlerUsuario_ADM implements Initializable {
 
     public void vaiEditar(ActionEvent actionEvent) {
         try {
+            usuario = new Usuario();
             usuario.setUsuario_iden(id);
             usuario.setNome(txtNome.getText());
             usuario.setEmail(txtEmail.getText());
             usuario.setSenha(txtSenha.getText());
             usuario.setCpf(txtCpf.getText());
-            cupom = (Cupom) cupomBll.getByNome(String.valueOf(comboCupom.valueProperty().get()));
-            usuario.setCupom(cupom);
-            if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
-                dialogoErro.setTitle("ERRO");
-                dialogoErro.setHeaderText("ERRO AO EDITAR");
-                dialogoErro.setContentText("SENHAS NAO CONFEREM");
-                dialogoErro.showAndWait();
+            if(comboCupom.getValue() == null){
+                erroGeral("PREENCHA O CAMPO CUPOM", "Escolha algum cupom para esse\nUsuario!");
+            }else{
+                cupom = (Cupom) cupomBll.getByNome(comboCupom.getValue().toString());
+                usuario.setCupom(cupom);
+                if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
+                    erroGeral("ERRO AO ALTERAR", "Senhas \nnao conferem");
+                } else {
+                    usuarioBll.Update(usuario);
+                    dialogoInfo.setTitle("INFORMAÇÃO");
+                    dialogoInfo.setHeaderText("USUARIO ALTERADO");
+                    dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi alterado!");
+                    dialogoInfo.showAndWait();
 
-            } else {
-                usuarioBll.Update(usuario);
-                dialogoInfo.setTitle("INFORMAÇÃO");
-                dialogoInfo.setHeaderText("USUARIO EDITADO");
-                dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi editado!");
-                dialogoInfo.showAndWait();
 
-                atualizarGrid();
-                limparCampos();
+                    atualizarGrid();
+                    limparCampos();
+                }
+
+
             }
 
 
@@ -224,28 +235,30 @@ public class ControlerUsuario_ADM implements Initializable {
 
     private void atualizarGridPesquisa() {
 
-        try {
-            List<Usuario> usuarioList = usuarioBll.getByNomePesquisa(txtPesquisa.getText());
+        if (!txtPesquisa.getText().isEmpty()) {
+            try {
+                List<Usuario> usuarioList = usuarioBll.getByNomePesquisa(txtPesquisa.getText());
 
-            ObservableList<Usuario> usuarioObservableList;
+                ObservableList<Usuario> usuarioObservableList;
 
-            columNome.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome()));
-            columCpf.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCpf()));
-            columEmail.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getEmail()));
-            columCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCupom().getNome()));
-            columId.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getUsuario_iden() + ""));
-
-
-            usuarioObservableList = FXCollections.observableArrayList(usuarioList);
-            tableUsuario.setItems(usuarioObservableList);
+                columNome.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getNome()));
+                columCpf.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCpf()));
+                columEmail.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getEmail()));
+                columCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getCupom().getNome()));
+                columId.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getUsuario_iden() + ""));
 
 
-        } catch (Exception e) {
-            dialogoErro.setTitle("ERRO");
-            dialogoErro.setHeaderText("ERRO AO ATUALIZAR GRID");
-            dialogoErro.setContentText(e.getMessage());
-            dialogoErro.showAndWait();
+                usuarioObservableList = FXCollections.observableArrayList(usuarioList);
+                tableUsuario.setItems(usuarioObservableList);
 
+
+            } catch (Exception e) {
+                dialogoErro.setTitle("ERRO");
+                dialogoErro.setHeaderText("ERRO AO ATUALIZAR GRID");
+                dialogoErro.setContentText(e.getMessage());
+                dialogoErro.showAndWait();
+
+            }
         }
 
 
@@ -263,22 +276,23 @@ public class ControlerUsuario_ADM implements Initializable {
     private void popularCombox() throws Exception {
         List<Cupom> cupomList = cupomBll.getAll();
         comboCupom.getItems().clear();
-
         for (Cupom cup : cupomList) {
-           comboCupom.getItems().add(cup.getNome());
+            comboCupom.getItems().add(cup);
         }
     }
 
-    public void vaiAtualizarCombo(MouseEvent mouseEvent)throws Exception {
+    public void vaiAtualizarCombo(MouseEvent mouseEvent) throws Exception {
         comboCupom.getItems().clear();
 
         popularCombox();
     }
 
-    public void erroGeral(String headTxt, String msg){
+    public void erroGeral(String headTxt, String msg) {
         dialogoErro.setTitle("ERRO");
         dialogoErro.setHeaderText(headTxt);
         dialogoErro.setContentText(msg);
         dialogoErro.showAndWait();
     }
+
+
 }

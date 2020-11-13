@@ -44,7 +44,7 @@
       </ImageView>
       <TextField fx:id="txtUsuarioLogin" layoutX="65.0" layoutY="78.0" prefHeight="26.0" prefWidth="269.0" promptText="Usuario..." />
       <TextField fx:id="txtsenhavisible" layoutX="65.0" layoutY="122.0" prefHeight="26.0" prefWidth="270.0" promptText="senha..." />
-      <PasswordField fx:id="txtSenhaLogin" layoutX="65.0" layoutY="122.0" prefHeight="26.0" prefWidth="270.0" promptText="Senha..." />
+      <PasswordField fx:id="txtSenhaLogin" layoutX="65.0" layoutY="122.0"  prefHeight="26.0" prefWidth="270.0" promptText="Senha..." />
       <CheckBox fx:id="checkBoxSenha" layoutX="65.0" layoutY="170.0" mnemonicParsing="false" onAction="#vaiExibirSenha" prefHeight="18.0" prefWidth="97.0" text="Exibir senha" />
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="200.0" layoutY="164.0" onMouseClicked="#vaiCadastrarUsuario" pickOnBounds="true" preserveRatio="true">
          <image>

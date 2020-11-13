@@ -71,6 +71,8 @@ public class MantemCupomDal implements ICRUD_GENERIC {
     public List getAll() throws Exception {
         AdministradorDal administradordal = new AdministradorDal();
         CupomDal cupomdal = new CupomDal();
+        Administrador administrador;
+        Cupom cupom;
         String sql = "SELECT * FROM mantem_cupum";
         List<MantenCupom> lista = new ArrayList<>();
         try {
@@ -78,16 +80,17 @@ public class MantemCupomDal implements ICRUD_GENERIC {
             ResultSet rs = statement.executeQuery(sql);
             while(rs.next()){
                 mantenCupom = new MantenCupom();
+
                 mantenCupom.setMantemCupom_iden(rs.getInt("mantem_cupom_iden"));
 
                 //COMP. ADM+MANTEM_CUPOM
                 int idadm = rs.getInt("mantem_cupom_adm_iden");
-                Administrador administrador = (Administrador) administradordal.getById(idadm);
+                administrador = (Administrador) administradordal.getById(idadm);
                 mantenCupom.setMantemcup_adm_iden(administrador);
 
                 //COMP. ADM+MANTEM_CUPOM
                 int idcup = rs.getInt("mantem_cupom_cup_iden");
-                Cupom cupom =(Cupom) cupomdal.getById(idcup);
+                cupom =(Cupom) cupomdal.getById(idcup);
                 mantenCupom.setMantemcup_cup_iden(cupom);
 
                 lista.add(mantenCupom);

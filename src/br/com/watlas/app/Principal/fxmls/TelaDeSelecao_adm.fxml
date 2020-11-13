@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="226.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLogin">
+<AnchorPane prefHeight="226.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLoginAdministrador">
    <children>
       <Button fx:id="btnGerenciarFilme" layoutX="30.0" layoutY="57.0" mnemonicParsing="false" onAction="#entrarEmGerenciadofilme" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR FILMES" />
       <Button fx:id="btnGerenciarPlanos" layoutX="207.0" layoutY="57.0" mnemonicParsing="false" onAction="#entrarEmGerenciarplanos" prefHeight="63.0" prefWidth="142.0" text="GERENCIAR PLANOS" />

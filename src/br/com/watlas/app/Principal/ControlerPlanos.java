@@ -53,7 +53,8 @@ public class ControlerPlanos implements Initializable {
 
     public void vaiIncluir(ActionEvent actionEvent) {
         try {
-            plano.setPlano_nome(txtNome.getText());
+            plano = new Plano();
+            plano.setPlano_nome(txtNome.getText().toLowerCase());
             plano.setPlano_preco(Double.parseDouble(txtPreco.getText()));
             plano.setPlano_acessSimutaneo(Integer.parseInt(txtAcessoSimutaneo.getText()));
 
@@ -93,6 +94,7 @@ public class ControlerPlanos implements Initializable {
             limparCampos();
 
         }catch (Exception e){
+
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("NAO FOI POSSIVEL EXCLUIR");
             dialogoErro.setContentText(e.getMessage());
@@ -103,7 +105,8 @@ public class ControlerPlanos implements Initializable {
 
     public void vaiEditar(ActionEvent actionEvent) {
         try {
-            plano.setPlano_iden(id);
+            plano = (Plano) planoBll.getByNome(txtNome.getText().toLowerCase());
+            //plano.setPlano_iden(id);
             plano.setPlano_nome(txtNome.getText());
             plano.setPlano_preco(Double.parseDouble(txtPreco.getText()));
             plano.setPlano_acessSimutaneo(Integer.parseInt(txtAcessoSimutaneo.getText()));

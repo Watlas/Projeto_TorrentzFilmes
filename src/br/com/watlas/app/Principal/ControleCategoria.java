@@ -63,6 +63,7 @@ public class ControleCategoria implements Initializable {
             atualizarGrid();
             txtPesquisaCat.setText("");
         }catch (Exception e){
+            System.out.println(e.getMessage());
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO INCLUIR");
             dialogoErro.setContentText(e.getMessage());

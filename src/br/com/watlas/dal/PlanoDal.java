@@ -51,6 +51,7 @@ public class PlanoDal implements ICRUD_GENERIC {
 
     @Override
     public void Update(Object objeto) throws Exception {
+        plano = (Plano) objeto;
         String sql = "UPDATE planos SET pla_preco=?, pla_acesso_simutaneo=?, pla_nome=?" +
                 "WHERE pla_iden =?";
         try {

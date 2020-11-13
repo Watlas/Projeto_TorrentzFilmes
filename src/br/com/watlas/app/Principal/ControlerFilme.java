@@ -3,10 +3,11 @@ package br.com.watlas.app.Principal;
 import br.com.watlas.bll.CategoriaBll;
 import br.com.watlas.bll.FilmeBll;
 import br.com.watlas.bll.MantemFilmeBll;
-import br.com.watlas.bll.PlanoBll;
 import br.com.watlas.modal.*;
 
+import br.com.watlas.util.ValidaCampo;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -61,6 +61,7 @@ public class ControlerFilme implements Initializable {
     private CategoriaBll categoriaBll;
     private MantemFilmeBll mantemFilmeBll;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -72,6 +73,7 @@ public class ControlerFilme implements Initializable {
             mantemFilmeBll = new MantemFilmeBll();
             atualizarGridFilmes();
             popularCombox();
+
         } catch (Exception e) {
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("INICIALIZAR");
@@ -85,34 +87,44 @@ public class ControlerFilme implements Initializable {
 
 
     public void bntactionAdicionar(ActionEvent actionEvent) {
+        filme = new Filme();
+        categoria = new Categoria();
         try {
 
             filme.setFilme_titulo(txtFilTitulo.getText());
             filme.setFilme_sintopse(txtfilSintopse.getText());
+            if(txtFilAno.getText().isEmpty()){
+                throw new Exception("INFORME O ANO DO FILME");
+            }
             filme.setFilme_ano(Integer.parseInt(txtFilAno.getText()));
             filme.setFilme_caminho(txtFilCaminho.getText());
             filme.setFilme_capa(txtFilCapa.getText());
             //COMPOSIÇÃO
-            categoria = (Categoria) categoriaBll.getByNome(String.valueOf(comboCategoria.valueProperty().get()));
-            filme.setFilme_cat_iden(categoria);
-            filmeBll.Add(filme);
+            if(comboCategoria.getValue() == null){
+                erroGeral("PREENCHA O CAMPO CATEGORIA", "TA FALTANDO PREENCHER O CAMPO DE FILME\n MEU CONSAGRADO!");
+            }else{
+                categoria = (Categoria) categoriaBll.getByNome(comboCategoria.getValue().toString());
+                filme.setFilme_cat_iden(categoria);
+                filmeBll.Add(filme);
 
-            //PEGANDO O FILME LOGO DEPOIS DE ADICIONADO PARA PEGAR O ID QUE FOI GERADO
-            filme = (Filme) filmeBll.getByNome(txtFilTitulo.getText());
+                //PEGANDO O FILME LOGO DEPOIS DE ADICIONADO PARA PEGAR O ID QUE FOI GERADO
+                filme = (Filme) filmeBll.getByNome(txtFilTitulo.getText());
 
-            //SETANDO TABLE MANTEM_FILME
-            mantemFilme.setMantemFilme_adm_iden(ControlerLogin.administrador);
-            mantemFilme.setMantemFilme_fil_iden(filme);
-            mantemFilmeBll.Add(mantemFilme);
+                //SETANDO TABLE MANTEM_FILME
+                mantemFilme.setMantemFilme_adm_iden(ControlerLoginAdministrador.administrador);
+                mantemFilme.setMantemFilme_fil_iden(filme);
+                mantemFilmeBll.Add(mantemFilme);
 
-            dialogoInfo.setTitle("INFORMAÇÃO");
-            dialogoInfo.setHeaderText("FILME ADICIONADO");
-            dialogoInfo.setContentText("Filme "+filme.getFilme_titulo() + " foi adicionado!");
-            dialogoInfo.showAndWait();
+                dialogoInfo.setTitle("INFORMAÇÃO");
+                dialogoInfo.setHeaderText("FILME ADICIONADO");
+                dialogoInfo.setContentText("Filme "+filme.getFilme_titulo() + " foi adicionado!");
+                dialogoInfo.showAndWait();
 
-            atualizarGridFilmes();
-            limparCampos();
+                atualizarGridFilmes();
+                limparCampos();
 
+
+            }
 
         } catch (Exception e) {
 
@@ -125,18 +137,21 @@ public class ControlerFilme implements Initializable {
     }
 
     public void bntactionExcluir(ActionEvent actionEvent) {
+
         try {
+
             filmeBll.Delete(id);
-            filme = (Filme) filmeBll.getById(id);
+
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("FILME ADICIONADO");
-            dialogoInfo.setContentText("Filme "+filme.getFilme_titulo() + " foi apagado!");
+            dialogoInfo.setContentText("Filme foi apagado!");
             dialogoInfo.showAndWait();
             limparCampos();
             atualizarGridFilmes();
 
         }catch (Exception e){
+            System.out.println(e.getMessage());
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("NAO FOI POSIVEL EXCLUIR");
             dialogoErro.setContentText(e.getMessage());
@@ -149,6 +164,7 @@ public class ControlerFilme implements Initializable {
 
     public void bntactionEditar(ActionEvent actionEvent)
     {
+        filme = new Filme();
         try {
             filme.setFilme_iden(id);
             filme.setFilme_titulo(txtFilTitulo.getText());
@@ -157,27 +173,27 @@ public class ControlerFilme implements Initializable {
             filme.setFilme_caminho(txtFilCaminho.getText());
             filme.setFilme_capa(txtFilCapa.getText());
             //COMPOSIÇÃO
-            categoria = (Categoria) categoriaBll.getByNome(String.valueOf(comboCategoria.valueProperty().get()));
-            filme.setFilme_cat_iden(categoria);
-            filmeBll.Update(filme);
+
+            if(comboCategoria.getValue() == null){
+                erroGeral("PREENCHA O CAMPO CATEGORIA", "TA FALTANDO PREENCHER O CAMPO DE FILME\n MEU CONSAGRADO!");
+            }else{
+                categoria = (Categoria) categoriaBll.getByNome(comboCategoria.getValue().toString());
+                filme.setFilme_cat_iden(categoria);
+                filmeBll.Update(filme);
+
+                dialogoInfo.setTitle("INFORMAÇÃO");
+                dialogoInfo.setHeaderText("FILME EDITADO");
+                dialogoInfo.setContentText("Filme "+filme.getFilme_titulo() + " foi EDITADO!");
+                dialogoInfo.showAndWait();
+
+                atualizarGridFilmes();
+                limparCampos();
 
 
-            dialogoInfo.setTitle("INFORMAÇÃO");
-            dialogoInfo.setHeaderText("FILME EDITADO");
-            dialogoInfo.setContentText("Filme '"+filme.getFilme_titulo() + "' foi editado!");
-            dialogoInfo.showAndWait();
-
-            atualizarGridFilmes();
-            limparCampos();
-
+            }
 
         } catch (Exception e) {
-
-            dialogoErro.setTitle("ERRO");
-            dialogoErro.setHeaderText("NAO FOI POSIVEL ADICIONAR");
-            dialogoErro.setContentText(e.getMessage());
-            dialogoErro.showAndWait();
-            System.out.println(e.getMessage());
+            erroGeral("ERRO AO EDITAR", e.getMessage());
 
         }
     }
@@ -200,10 +216,7 @@ public class ControlerFilme implements Initializable {
             txtFilCaminho.setEditable(false);
 
         } catch (Exception e) {
-            dialogoErro.setTitle("ERRO");
-            dialogoErro.setHeaderText("INICIALIZAR");
-            dialogoErro.setContentText(e.getMessage());
-            dialogoErro.showAndWait();
+
 
         }
     }
@@ -269,8 +282,9 @@ public class ControlerFilme implements Initializable {
         List<Categoria> categoriaList = categoriaBll.getAll();
         comboCategoria.getItems().clear();
         for (Categoria cat : categoriaList) {
-            comboCategoria.getItems().add(cat.getCategoria_nome());
+            comboCategoria.getItems().add(cat);
         }
+
     }
 
 
@@ -312,5 +326,12 @@ public class ControlerFilme implements Initializable {
         popularCombox();
 
     }
+    private void erroGeral(String titulo, String corpoErro){
+        dialogoErro.setTitle("ERRO");
+        dialogoErro.setHeaderText(titulo);
+        dialogoErro.setContentText(corpoErro);
+        dialogoErro.showAndWait();
+    }
+
 
 }

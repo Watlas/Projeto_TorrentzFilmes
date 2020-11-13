@@ -18,7 +18,7 @@
       <TextField fx:id="txtFilCapa" layoutX="130.0" layoutY="210.0" prefHeight="26.0" prefWidth="398.0" />
       <Label layoutX="13.0" layoutY="215.0" prefHeight="18.0" prefWidth="106.0" text="SELECIONE CAPA" />
       <Button fx:id="bntFilCapa" layoutX="547.0" layoutY="211.0" mnemonicParsing="false" onAction="#bntAbrirChooserCapa" prefHeight="26.0" prefWidth="39.0" text="+" />
-      <ComboBox fx:id="comboCategoria" layoutX="130.0" layoutY="247.0" onMouseClicked="#vaiAtualizarCombo" prefWidth="150.0" promptText="&lt;SELECIONE&gt;" />
+      <ComboBox fx:id="comboCategoria" layoutX="130.0" layoutY="247.0" onMouseClicked="#vaiAtualizarCombo" prefWidth="150.0" />
       <Label layoutX="13.0" layoutY="251.0" text="CATEGORIA" />
       <Button fx:id="bntFilAdicinar" layoutX="506.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionAdicionar" text="ADICIONAR" />
       <Button fx:id="bntFilExcluir" layoutX="437.0" layoutY="290.0" mnemonicParsing="false" onAction="#bntactionExcluir" text="EXCLUIR" />

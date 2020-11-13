@@ -80,7 +80,7 @@ public class MantemFilmeDal implements ICRUD_GENERIC {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
                 mantemFilme = new MantemFilme();
-
+                mantemFilme.setMantemFilme_iden(rs.getInt("mantem_filme_iden"));
                 //COMP. FILME+MANTEM_FILME
                 int idfil = rs.getInt("vizu_Filmes_iden");
                 Filme filme = (Filme) filmeDal.getById(idfil);

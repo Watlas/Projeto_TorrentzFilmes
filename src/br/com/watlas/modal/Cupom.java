@@ -54,11 +54,6 @@ public class Cupom {
 
     @Override
     public String toString() {
-        return "Cupom{" +
-                "cupom_iden=" + cupom_iden +
-                ", nome='" + nome + '\'' +
-                ", cupom_DataGeracao=" + cupom_DataGeracao +
-                ", cupom_porcentagem=" + cupom_porcentagem +
-                '}';
+        return nome;
     }
 }

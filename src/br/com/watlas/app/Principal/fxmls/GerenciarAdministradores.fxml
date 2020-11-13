@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="274.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLogin">
+<AnchorPane prefHeight="274.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLoginAdministrador">
    <children>
       <Button fx:id="btnCadCriarConta" layoutX="454.0" layoutY="197.0" mnemonicParsing="false" onAction="#CriarConta" text="CRIAR CONTA" />
       <Button fx:id="btnCadVoltar" layoutX="312.0" layoutY="197.0" mnemonicParsing="false" onAction="#VoltarTelaLogin" text="VOLTAR" />

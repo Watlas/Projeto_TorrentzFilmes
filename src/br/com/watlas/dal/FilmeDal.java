@@ -57,6 +57,7 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
 
     @Override
     public void Update(T objeto) throws Exception {
+        filme = (Filme) objeto;
         String sql = "UPDATE filmes SET fil_caminho=?, fil_titulo=?, fil_ano=? ,fil_sintopse=?,fil_capa=?, fil_cat_iden=?" +
                 "WHERE fil_iden=?";
         try {

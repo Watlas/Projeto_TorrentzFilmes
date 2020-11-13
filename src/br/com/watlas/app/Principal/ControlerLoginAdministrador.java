@@ -1,7 +1,6 @@
 package br.com.watlas.app.Principal;
 
-import br.com.watlas.app.Principal.Mainapp;
-import br.com.watlas.dal.AdministradorDal;
+import br.com.watlas.bll.AdministradorBll;
 import br.com.watlas.modal.Administrador;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -12,7 +11,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ControlerLogin implements Initializable{
+public class ControlerLoginAdministrador implements Initializable{
     //textField's da tela de CADASTRO
     public TextField txtCadNome;
     public TextField txtCadEmail;
@@ -24,21 +23,20 @@ public class ControlerLogin implements Initializable{
     Alert dialogoErro = new Alert(Alert.AlertType.ERROR);
     //OBJETO DE CLASSES CONCRETAS
     static Administrador administrador = null;
-    private AdministradorDal administradorDal = null;
+    private AdministradorBll administradorDal = null;
 
 
-    ControlerCupom com = new ControlerCupom();
-    ControlerFilme conf = new ControlerFilme();
 
     public void fazerLogin(ActionEvent actionEvent) {
 
         try {
             administrador = new Administrador();
-            administradorDal = new AdministradorDal();
+            administradorDal = new AdministradorBll();
             //
-            administrador = (Administrador) administradorDal.getByNome(txtloginNome.getText());
-
-
+            administrador = (Administrador) administradorDal.getByNome(txtloginNome.getText().trim());
+            if(administrador.getSenha() == null){
+                throw new Exception("ADMINISTRADOR NAO CADASTRADO");
+            }
             if (administrador.getSenha().equals(txtLoginSenha.getText())) {
 
                 Mainapp.mudarTela("teladeselecao");
@@ -77,8 +75,11 @@ public class ControlerLogin implements Initializable{
 
         try {
             administrador = new Administrador();
-            administradorDal = new AdministradorDal();
+            administradorDal = new AdministradorBll();
             //setando Objetos
+            if(txtCadNome.getText().contains(" ")){
+                throw new Exception("O nome nao pode ter espaços, hahaha");
+            }
             administrador.setAdm_nome(txtCadNome.getText());
             administrador.setSenha(txtCadSenha.getText());
             administrador.setAdm_email(txtCadEmail.getText());

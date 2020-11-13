@@ -3,11 +3,8 @@ package br.com.watlas.app.Principal;
 import br.com.watlas.bll.CupomBll;
 import br.com.watlas.bll.MantemCupomBll;
 import br.com.watlas.bll.UsuarioBll;
-import br.com.watlas.dal.AdministradorDal;
-import br.com.watlas.modal.Administrador;
 import br.com.watlas.modal.Cupom;
 import br.com.watlas.modal.MantenCupom;
-import br.com.watlas.modal.Usuario;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,7 +69,7 @@ public class ControlerCupom implements Initializable {
 
     public void vaiIncluirCup(ActionEvent actionEvent) {
         try {
-
+            cupom = new Cupom();
             cupom.setNome(txtNomeCup.getText().toLowerCase());
             cupom.setCupom_porcentagem(Double.parseDouble(txtDescontoCup.getText()));
             cupom.setCupom_DataGeracao(new java.sql.Date(new java.util.Date().getTime()));
@@ -82,7 +79,7 @@ public class ControlerCupom implements Initializable {
 
             //SETANDO NA TABLE DE MANTEM_CUPOM
             mantenCupom.setMantemcup_cup_iden(cupom);
-            mantenCupom.setMantemcup_adm_iden(ControlerLogin.administrador);
+            mantenCupom.setMantemcup_adm_iden(ControlerLoginAdministrador.administrador);
             mantemCupomBll.Add(mantenCupom);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
@@ -90,10 +87,12 @@ public class ControlerCupom implements Initializable {
             dialogoInfo.setContentText("categoria '" + cupom.getNome() + "' foi adicionado!");
             dialogoInfo.showAndWait();
             atualizarGridCup();
+            atualizarGridDados();
             limparCampos();
 
 
         } catch (Exception e) {
+
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO INCLUIR");
             dialogoErro.setContentText(e.getMessage());
@@ -114,9 +113,11 @@ public class ControlerCupom implements Initializable {
             dialogoInfo.setContentText("categoria '" + cupom.getNome() + "' foi APAGADO!");
             dialogoInfo.showAndWait();
             atualizarGridCup();
+
             limparCampos();
 
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             dialogoErro.setTitle("ERRO");
             dialogoErro.setHeaderText("ERRO AO EXCLUIR");
             dialogoErro.setContentText(e.getMessage());

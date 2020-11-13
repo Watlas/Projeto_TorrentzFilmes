@@ -36,7 +36,14 @@ public class UsuarioBll implements ICRUD_GENERIC {
 
             dal.Delete(n);
         } catch (Exception e) {
-            throw e;
+            String m = e.getMessage();
+            if(m.contains("update or delete on table \"usuario\" violates foreign key constraint \"contrata_con_usu_iden_fkey\" on table \"contrata\"")){
+                m ="Esse Usuario possui um contrato ativo, nao sera possivel excluir";
+            }
+            if(m.contains("update or delete on table \"usuario\" violates foreign key constraint \"vizualiza_vizu_usuario_iden_fkey\" on table \"vizualiza\"")){
+                m = "Esse Usuario possui historico de vizualizaçoes, não sera possivel apagar.";
+            }
+            throw new Exception(m);
         }
     }
 

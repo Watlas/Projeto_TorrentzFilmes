@@ -71,7 +71,6 @@ public class ControlerFilmesUsuario implements Initializable {
     private boolean atEndOfMedia = false;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -103,7 +102,7 @@ public class ControlerFilmesUsuario implements Initializable {
     }
 
     public void vaiAssistir(ActionEvent actionEvent) throws Exception {
-        if(verificarPlano() == false){
+        if (verificarPlano() == false) {
             Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("VOCE NAO POSSUI UM PLANO");
@@ -111,7 +110,7 @@ public class ControlerFilmesUsuario implements Initializable {
             dialogoInfo.showAndWait();
             return;
 
-        }else {
+        } else {
             filme = (Filme) filmeBll.getById(id);
             String path;
             File file = new File(filme.getFilme_caminho());
@@ -162,21 +161,41 @@ public class ControlerFilmesUsuario implements Initializable {
 
 
     public void vaiPausar(ActionEvent actionEvent) throws Exception {
-        registrarVisualizacao(false);
-        if (help == 1) {
-            mediaPlayer.play();
-            help--;
-        } else if (help == 0) {
-            mediaPlayer.pause();
-            help++;
+        if (verificarPlano() == false) {
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("INFORMAÇÃO");
+            dialogoInfo.setHeaderText("VOCE NAO POSSUI UM PLANO");
+            dialogoInfo.setContentText("para assistir uma filme, adiquira um plano.");
+            dialogoInfo.showAndWait();
+            return;
+
+        } else {
+            registrarVisualizacao(false);
+            if (help == 1) {
+                mediaPlayer.play();
+                help--;
+            } else if (help == 0) {
+                mediaPlayer.pause();
+                help++;
+            }
+
         }
+
     }
 
     public void vaiParar(ActionEvent actionEvent) throws Exception {
 
+        if (verificarPlano() == false) {
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("INFORMAÇÃO");
+            dialogoInfo.setHeaderText("VOCE NAO POSSUI UM PLANO ATIVO");
+            dialogoInfo.setContentText("para assistir uma filme, adiquira um plano.");
+            dialogoInfo.showAndWait();
+            return;
 
-        registrarVisualizacao(true);
-
+        } else {
+            registrarVisualizacao(true);
+        }
 
     }
 
@@ -192,40 +211,40 @@ public class ControlerFilmesUsuario implements Initializable {
 
                 }
 
-                    if (mediaPlayer.getCurrentTime().toSeconds() < mediaPlayer.getTotalDuration().toSeconds()) {
-                        visualiza.setVisu_completo(false);
-                        visualiza.setVisu_dataVisualizacao((new java.sql.Date(new java.util.Date().getTime())));
-                        visualiza.setVisu_usuario_iden(ControlerLoginUsuario.usuario);
-                        visualiza.setVisu_filme_iden(filme);
-                            vizualizaBll.Add(visualiza);
-                        //Somente um filme false use + fil
-                        //usar o where fil + usu + status
-                    } else {
-                        visualiza.setVisu_completo(true);
-                        visualiza.setVisu_dataVisualizacao((new java.sql.Date(new java.util.Date().getTime())));
-                        visualiza.setVisu_usuario_iden(ControlerLoginUsuario.usuario);
-                        visualiza.setVisu_filme_iden(filme);
-                        vizualizaBll.Add(visualiza);
-                    }
+                if (mediaPlayer.getCurrentTime().toSeconds() < mediaPlayer.getTotalDuration().toSeconds()) {
+                    visualiza.setVisu_completo(false);
+                    visualiza.setVisu_dataVisualizacao((new java.sql.Date(new java.util.Date().getTime())));
+                    visualiza.setVisu_usuario_iden(ControlerLoginUsuario.usuario);
+                    visualiza.setVisu_filme_iden(filme);
+                    vizualizaBll.Add(visualiza);
+                    //Somente um filme false use + fil
+                    //usar o where fil + usu + status
+                } else {
+                    visualiza.setVisu_completo(true);
+                    visualiza.setVisu_dataVisualizacao((new java.sql.Date(new java.util.Date().getTime())));
+                    visualiza.setVisu_usuario_iden(ControlerLoginUsuario.usuario);
+                    visualiza.setVisu_filme_iden(filme);
+                    vizualizaBll.Add(visualiza);
                 }
             }
         }
-
+    }
 
 
     public void vaiAtualizarGridControl(ActionEvent actionEvent) throws Exception {
         registrarVisualizacao(true);
         atualizaGridControl();
     }
+
     private Boolean verificarPlano() throws Exception {
         Contrata contrata = new Contrata();
         ContrataBll contrataBll = new ContrataBll();
 
         contrata = (Contrata) contrataBll.getByIdusu(ControlerLoginUsuario.usuario.getUsuario_iden());
-        if(contrata.getContrato_dataInicio() == null){
-           return false;
-        }else{
+        if (contrata.getContrato_status() == true) {
             return true;
+        } else {
+            return false;
         }
 
     }

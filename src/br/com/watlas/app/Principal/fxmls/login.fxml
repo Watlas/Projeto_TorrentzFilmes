@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="146.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLogin">
+<AnchorPane prefHeight="146.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.watlas.app.Principal.ControlerLoginAdministrador">
    <children>
       <Label layoutX="14.0" layoutY="43.0" prefHeight="24.0" prefWidth="40.0" text="LOGIN" />
       <Label layoutX="14.0" layoutY="80.0" prefHeight="18.0" prefWidth="40.0" text="SENHA" />

@@ -39,15 +39,24 @@ public class ControlerLoginUsuario implements Initializable {
 
     public void vaiEntrar(MouseEvent mouseEvent) throws Exception {
         try {
-            usuario = (Usuario) usuarioBll.getByNome(txtUsuarioLogin.getText());
+            usuario = (Usuario) usuarioBll.getByNome(txtUsuarioLogin.getText().trim().toLowerCase());
             if(usuario.getSenha() ==null){
                 throw new Exception("USUARIO NAO EXISTE NO SISTEMA");
             }
-            if (usuario.getSenha().equals(txtSenhaLogin.getText())) {
-                Mainapp.mudarTela("menuUsuario");
-            } else {
-                erroGeral("SENHA INCORRETA", "A senha está incorreta!");
+            if(checkBoxSenha.isSelected()){
+                if (usuario.getSenha().equals(txtsenhavisible.getText())) {
+                    Mainapp.mudarTela("menuUsuario");
+                } else {
+                    erroGeral("SENHA INCORRETA", "A senha está incorreta!");
+                }
+            }else{
+                if (usuario.getSenha().equals(txtSenhaLogin.getText())) {
+                    Mainapp.mudarTela("menuUsuario");
+                } else {
+                    erroGeral("SENHA INCORRETA", "A senha está incorreta!");
+                }
             }
+
 
 
         } catch (Exception e) {

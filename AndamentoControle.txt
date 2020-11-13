@@ -1,12 +1,12 @@
-
-CLASSES        DAL   APP    BLL
-administrador <OK>   <OK>
-categoria     <OK>   <OK>
-contrata      <OK>   <OK>
-cupom	      <OK>   <OK>
-filme         <OK>   <OK>   <OK>
-mantemFilme   <OK>   <OK>
-manteCupom    <OK>   <OK>
-Plano         <OK>   <OK>
-Usuario       <OK>   <OK>   <OK>
-Vizualiza     <OK>   <OK>
+ 					       ADM
+CLASSES        	DAL    APP    BLL     MODAL   TESTE
+administrador 	<OK>   <OK>   <OK>     <OK>    <OK> 
+categoria     	<OK>   <OK>   <OK>     <OK>    <OK>
+contrata      	<OK>   <OK>   <OK>     <OK>    <OK>
+cupom         	<OK>   <OK>   <OK>     <OK>    <OK>
+filme         	<OK>   <OK>   <OK>     <OK>    <OK>
+mantemFilme   	<OK>   <OK>   <OK>     <OK>    <OK>
+manteCupom    	<OK>   <OK>   <OK>     <OK>    <OK>
+Plano         	<OK>   <OK>   <OK>     <OK>    <OK>
+Usuario       	<OK>   <OK>   <OK>     <OK>    <OK>
+Vizualiza     	<OK>   <OK>   <OK>     <OK>    <OK>

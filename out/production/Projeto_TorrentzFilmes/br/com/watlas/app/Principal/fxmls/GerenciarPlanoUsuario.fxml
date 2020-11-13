@@ -33,7 +33,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tablePlanoControl" layoutX="14.0" layoutY="73.0" onMouseReleased="#vaiPegarDadosGrid" prefHeight="289.0" prefWidth="495.0">
+                        <TableView fx:id="tablePlanoControl" layoutX="14.0" layoutY="73.0" onMouseReleased="#vaiPegarDadosGridcontrol" prefHeight="289.0" prefWidth="495.0">
                           <columns>
                             <TableColumn fx:id="columControlId" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="columControlNome" prefWidth="75.0" text="NOME" />
@@ -43,7 +43,7 @@
                               <TableColumn fx:id="columControlStatus" prefWidth="97.39996337890625" text="STATUS" />
                           </columns>
                         </TableView>
-                        <Button layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#vaiControlExcluir" text="EXCLUIR" />
+                        <Button layoutX="14.0" layoutY="34.0" mnemonicParsing="false" onAction="#vaiControlExcluir" text="CANCELAR PLANO" />
                      </children></AnchorPane>
             </content>
           </Tab>

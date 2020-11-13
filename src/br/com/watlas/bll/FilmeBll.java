@@ -31,7 +31,12 @@ public class FilmeBll implements ICRUD_GENERIC {
         try {
             dal.Delete(n);
         } catch (Exception e) {
-            throw e;
+            String m = e.getMessage();
+            if(m.contains("update or delete on table \"filmes\" violates foreign key constraint \"vizualiza_vizu_filmes_iden_fkey\" on table \"vizualiza\"")){
+                m = "Um ou mais Usuarios Vizualizaram esse filme, nao sera\n " +
+                        "possivel apagar.";
+            }
+            throw new Exception(m);
         }
     }
 
@@ -87,16 +92,19 @@ return  dal.getAllPesquisa(fil);
         if (objeto.getFilme_capa().equals("")) {
             throw new Exception("Informe a capa do Filme");
         }
-        if (objeto.getFilme_ano() >2020 ||  objeto.getFilme_ano() < 0) {
+        if (objeto.getFilme_ano() >2020 ||  objeto.getFilme_ano() < 1895) {
             throw new Exception("Ano invalido");
         }
+
         if (objeto.getFilme_caminho().equals("")) {
             throw new Exception("Informe o caminho do filme");
         }
         if (objeto.getFilme_sintopse().equals("")) {
             throw new Exception("Informe a sintopse do filme");
         }
-
+        if(objeto.getFilme_cat_iden().getCategoria_nome().equals("")){
+            throw new Exception("Informe a categoria do Filme");
+        }
 
         List<Filme> listaDeFilme = dal.getAll();
         for (Filme aux : listaDeFilme) {
@@ -106,11 +114,11 @@ return  dal.getAllPesquisa(fil);
             }
             if ((objeto.getFilme_iden() != aux.getFilme_iden()) && (objeto.getFilme_caminho().toUpperCase().
                     equalsIgnoreCase(aux.getFilme_caminho().toUpperCase()))){
-                throw new Exception("O caminho --> " + objeto.getFilme_caminho() + "\nJá existe no cadastro de Filmes!\n");
+                throw new Exception("O caminho Já existe no cadastro de Filmes!\n");
             }
             if ((objeto.getFilme_iden() != aux.getFilme_iden()) && (objeto.getFilme_capa().toUpperCase().
                     equalsIgnoreCase(aux.getFilme_capa().toUpperCase()))){
-                throw new Exception("essa capa --> " + objeto.getFilme_capa() + "\nJá existe no cadastro de Filmes!\n");
+                throw new Exception("essa capa Já existe no cadastro de Filmes!\n");
             }
 
 

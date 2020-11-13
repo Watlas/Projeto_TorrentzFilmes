@@ -1,0 +1,97 @@
+
+CREATE TABLE cupons (
+    cup_iden SERIAL PRIMARY KEY,
+    cup_data_geracao DATE NOT NULL,
+    cup_porcentagem NUMERIC NOT NULL,
+    cup_nome VARCHAR UNIQUE NOT NULL
+);
+
+CREATE TABLE usuario (
+    usu_iden SERIAL PRIMARY KEY,
+    usu_nome VARCHAR NOT NULL,
+    usu_email VARCHAR UNIQUE NOT NULL,
+    usu_cpf VARCHAR UNIQUE NOT NULL,
+    usu_senha VARCHAR  NOT NULL,
+	usu_cup_iden INTEGER,
+	FOREIGN KEY (usu_cup_iden) REFERENCES cupons(cup_iden)
+
+);
+
+
+CREATE TABLE administrador (
+    adm_iden SERIAL PRIMARY KEY,
+    adm_nome VARCHAR NOT NULL,
+    adm_email VARCHAR UNIQUE NOT NULL,
+    adm_senha VARCHAR NOT NULL
+);
+
+CREATE TABLE planos (
+	pla_iden SERIAL PRIMARY KEY,
+    pla_preco NUMERIC(7,2)NOT NULL,
+    pla_acesso_simutaneo INTEGER NOT NULL,
+    pla_nome VARCHAR UNIQUE NOT NULL
+   
+);
+
+CREATE TABLE categorias (
+cat_iden SERIAL PRIMARY KEY,
+    cat_nome VARCHAR UNIQUE NOT NULL
+    
+);
+
+
+
+CREATE TABLE filmes (
+    fil_iden SERIAL PRIMARY KEY,
+	fil_caminho VARCHAR UNIQUE NOT NULL,
+    fil_titulo VARCHAR UNIQUE NOT NULL,
+    fil_ano INTEGER NOT NULL,
+    fil_sintopse VARCHAR NOT NULL,
+fil_capa VARCHAR NOT NULL,
+	fil_cat_iden INTEGER,
+	FOREIGN KEY (fil_cat_iden)
+    REFERENCES categorias (cat_iden)
+   
+);
+
+
+CREATE TABLE contrata (
+    con_iden SERIAL PRIMARY KEY,
+	con_fim DATE NOT NULL,
+	con_inicio DATE NOT NULL,
+    con_status VARCHAR,
+	con_pla_iden INTEGER,
+	con_usu_iden INTEGER,
+    FOREIGN KEY (con_pla_iden) REFERENCES planos (pla_iden),
+	FOREIGN KEY (con_usu_iden) REFERENCES usuario (usu_iden)
+    
+);
+
+CREATE TABLE mantem_cupum (
+mantem_cupom_iden SERIAL PRIMARY KEY,
+    mantem_cupom_adm_iden INTEGER,
+    mantem_cupom_cup_iden INTEGER,
+	FOREIGN KEY (mantem_cupom_adm_iden) REFERENCES administrador (adm_iden)ON DELETE CASCADE,
+	FOREIGN KEY (mantem_cupom_cup_iden) REFERENCES cupons (cup_iden)ON DELETE CASCADE
+);
+
+CREATE TABLE vizualiza (
+     vis_iden SERIAL PRIMARY KEY,
+    viz_completo BOOLEAN NOT NULL,
+    viz_data_vizualizacao DATE NOT NULL,
+	vizu_usuario_iden INTEGER,
+	vizu_Filmes_iden INTEGER,
+	FOREIGN KEY (vizu_usuario_iden) REFERENCES usuario (usu_iden),
+	FOREIGN KEY (vizu_filmes_iden) REFERENCES filmes (fil_iden)
+  
+);
+
+CREATE TABLE mantem_filme (
+mantem_filme_iden SERIAL PRIMARY KEY,
+	mantem_filme_adm_iden INTEGER,
+	mantem_filme_fil_iden INTEGER,
+	FOREIGN KEY (mantem_filme_adm_iden) REFERENCES administrador (adm_iden) ON DELETE CASCADE,
+    FOREIGN KEY (mantem_filme_fil_iden) REFERENCES filmes (fil_iden) ON DELETE CASCADE
+ 
+);
+

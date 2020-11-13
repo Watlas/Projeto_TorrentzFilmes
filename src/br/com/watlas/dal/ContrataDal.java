@@ -155,15 +155,17 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
     public Object getByIdUsu(int n) throws Exception {
         UsuarioDal usuarioDal = new UsuarioDal();
         PlanoDal planoDal = new PlanoDal();
-        String sql = "SELECT * FROM contrata WHERE con_usu_iden=?";
+        String sql = "SELECT * FROM contrata WHERE con_usu_iden=? AND con_status ='true'";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setObject(1,n);
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()){
+                contrata = new Contrata();
                 contrata.setContrato_iden(rs.getInt("con_iden"));
                 contrata.setContrato_dataInicio(rs.getDate("con_inicio"));
                 contrata.setContrato_dataFim(rs.getDate("con_fim"));
+                contrata.setContrato_status(rs.getBoolean("con_status"));
 
                 //COMP. USU+CONTRATA
                 int idusu = rs.getInt("con_usu_iden");

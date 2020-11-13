@@ -44,7 +44,9 @@ public class ControlerCadastroDeUsuario implements Initializable {
 
     public void vaiCriarUsuario(MouseEvent mouseEvent) {
         try {
-
+            if (txtNome.getText().contains(" ")){
+                throw new Exception("O nome nao pode conter espaços");
+            }
             if (txtSenha.getText().equals(txtSenhaConfirmar)) {
                 erroGeral("SENHAS NAO CONFEREM", "AS SENHAS DEVEM SER IGUAIS");
             } else {
