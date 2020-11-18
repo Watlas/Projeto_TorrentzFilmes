@@ -2,17 +2,14 @@ package br.com.watlas.app.Principal;
 
 import br.com.watlas.bll.ContrataBll;
 import br.com.watlas.bll.FilmeBll;
-import br.com.watlas.bll.PlanoBll;
 import br.com.watlas.bll.VizualizaBll;
 import br.com.watlas.modal.Contrata;
 import br.com.watlas.modal.Filme;
-import br.com.watlas.modal.Plano;
 import br.com.watlas.modal.Visualiza;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -216,7 +213,7 @@ public class ControlerFilmesUsuario implements Initializable {
                     visualiza.setVisu_dataVisualizacao((new java.sql.Date(new java.util.Date().getTime())));
                     visualiza.setVisu_usuario_iden(ControlerLoginUsuario.usuario);
                     visualiza.setVisu_filme_iden(filme);
-                    vizualizaBll.Add(visualiza);
+                    vizualizaBll.add(visualiza);
                     //Somente um filme false use + fil
                     //usar o where fil + usu + status
                 } else {
@@ -224,7 +221,7 @@ public class ControlerFilmesUsuario implements Initializable {
                     visualiza.setVisu_dataVisualizacao((new java.sql.Date(new java.util.Date().getTime())));
                     visualiza.setVisu_usuario_iden(ControlerLoginUsuario.usuario);
                     visualiza.setVisu_filme_iden(filme);
-                    vizualizaBll.Add(visualiza);
+                    vizualizaBll.add(visualiza);
                 }
             }
         }

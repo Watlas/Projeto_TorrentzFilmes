@@ -9,18 +9,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.MouseEvent;
 
-import javax.swing.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -127,7 +122,7 @@ public class ControlerPlanoUsuario implements Initializable {
 
 
                     if (help < 1) {
-                        contrataBll.Add(contrata);
+                        contrataBll.add(contrata);
                         atualizarGrid();
                         atualizarGridControl();
                         Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
@@ -158,7 +153,10 @@ public class ControlerPlanoUsuario implements Initializable {
 
 
     public void vaiPegarDadosTable(MouseEvent mouseEvent) {
-        id = tablePlanos.getSelectionModel().getSelectedItem().getPlano_iden();
+        if(tablePlanos.getSelectionModel().getSelectedItem().getPlano_nome() != null){
+            id = tablePlanos.getSelectionModel().getSelectedItem().getPlano_iden();
+        }
+
     }
 
     private void atualizarGrid() throws Exception {

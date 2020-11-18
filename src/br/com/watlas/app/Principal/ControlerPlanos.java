@@ -1,8 +1,6 @@
 package br.com.watlas.app.Principal;
 
-import br.com.watlas.bll.FilmeBll;
 import br.com.watlas.bll.PlanoBll;
-import br.com.watlas.modal.Filme;
 import br.com.watlas.modal.Plano;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -58,7 +56,7 @@ public class ControlerPlanos implements Initializable {
             plano.setPlano_preco(Double.parseDouble(txtPreco.getText()));
             plano.setPlano_acessSimutaneo(Integer.parseInt(txtAcessoSimutaneo.getText()));
 
-            planoBll.Add(plano);
+            planoBll.add(plano);
 
 
             dialogoInfo.setTitle("INFORMAÇÃO");
@@ -81,7 +79,7 @@ public class ControlerPlanos implements Initializable {
     public void vaiExcluir(ActionEvent actionEvent) {
         try {
             plano = (Plano) planoBll.getById(id);
-            planoBll.Delete(id);
+            planoBll.delete(id);
 
 
             dialogoInfo.setTitle("INFORMAÇÃO");

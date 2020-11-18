@@ -5,9 +5,7 @@ import br.com.watlas.bll.FilmeBll;
 import br.com.watlas.bll.MantemFilmeBll;
 import br.com.watlas.modal.*;
 
-import br.com.watlas.util.ValidaCampo;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -105,7 +103,7 @@ public class ControlerFilme implements Initializable {
             }else{
                 categoria = (Categoria) categoriaBll.getByNome(comboCategoria.getValue().toString());
                 filme.setFilme_cat_iden(categoria);
-                filmeBll.Add(filme);
+                filmeBll.add(filme);
 
                 //PEGANDO O FILME LOGO DEPOIS DE ADICIONADO PARA PEGAR O ID QUE FOI GERADO
                 filme = (Filme) filmeBll.getByNome(txtFilTitulo.getText());
@@ -113,7 +111,7 @@ public class ControlerFilme implements Initializable {
                 //SETANDO TABLE MANTEM_FILME
                 mantemFilme.setMantemFilme_adm_iden(ControlerLoginAdministrador.administrador);
                 mantemFilme.setMantemFilme_fil_iden(filme);
-                mantemFilmeBll.Add(mantemFilme);
+                mantemFilmeBll.add(mantemFilme);
 
                 dialogoInfo.setTitle("INFORMAÇÃO");
                 dialogoInfo.setHeaderText("FILME ADICIONADO");
@@ -140,7 +138,7 @@ public class ControlerFilme implements Initializable {
 
         try {
 
-            filmeBll.Delete(id);
+            filmeBll.delete(id);
 
 
             dialogoInfo.setTitle("INFORMAÇÃO");

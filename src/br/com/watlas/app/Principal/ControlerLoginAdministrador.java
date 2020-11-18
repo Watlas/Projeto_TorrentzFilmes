@@ -86,7 +86,7 @@ public class ControlerLoginAdministrador implements Initializable{
             if (validaSenha() == false) {
             } else {
 
-                administradorDal.Add(administrador);
+                administradorDal.add(administrador);
                 Mainapp.mudarTela("main");
             }
 

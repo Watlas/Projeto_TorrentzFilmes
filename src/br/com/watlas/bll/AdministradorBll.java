@@ -6,6 +6,8 @@ import br.com.watlas.modal.Administrador;
 import br.com.watlas.util.ICRUD_GENERIC;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdministradorBll implements ICRUD_GENERIC {
 
@@ -17,19 +19,19 @@ public class AdministradorBll implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         try {
             validaAdministrador((Administrador) objeto);
-            dal.Add(objeto);
+            dal.add(objeto);
         } catch (Exception e) {
             throw e;
         }
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         try {
-            dal.Delete(n);
+            dal.delete(n);
         } catch (Exception e) {
             throw e;
         }
@@ -83,6 +85,13 @@ public class AdministradorBll implements ICRUD_GENERIC {
                 throw new Exception("Nome de usuario inválido!");
             }
         }
+
+        // Verifica se EMAIL é válido
+        if (isValidEmailAddressRegex(objeto.getAdm_email()) == false) {
+            throw new Exception("Não foi possível concluir sua solicitação"
+                    + "\nO EMAIL informado não é válido");
+        }
+
         if (objeto.getSenha().equals("")) {
             throw new Exception("Informe o CPF do Administrador");
         }
@@ -112,5 +121,19 @@ public class AdministradorBll implements ICRUD_GENERIC {
 
         }
     }
+
+    public static boolean isValidEmailAddressRegex(String email) {
+        boolean isEmailIdValid = false;
+        if (email != null && email.length() > 0) {
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            if (matcher.matches()) {
+                isEmailIdValid = true;
+            }
+        }
+        return isEmailIdValid;
+    }
+
 
 }

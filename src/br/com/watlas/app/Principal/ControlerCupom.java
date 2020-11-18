@@ -69,18 +69,22 @@ public class ControlerCupom implements Initializable {
 
     public void vaiIncluirCup(ActionEvent actionEvent) {
         try {
+            if (txtDescontoCup.getText().isEmpty()) {
+                erroGeral("PREENCHA O CAMPO", "ESTA FALTANDO O CAMPO DE DESCONTO");
+            }
             cupom = new Cupom();
+            mantenCupom = new MantenCupom();
             cupom.setNome(txtNomeCup.getText().toLowerCase());
             cupom.setCupom_porcentagem(Double.parseDouble(txtDescontoCup.getText()));
             cupom.setCupom_DataGeracao(new java.sql.Date(new java.util.Date().getTime()));
-            cupomBll.Add(cupom);
+            cupomBll.add(cupom);
 
             cupom = (Cupom) cupomBll.getByNome(txtNomeCup.getText());
 
             //SETANDO NA TABLE DE MANTEM_CUPOM
             mantenCupom.setMantemcup_cup_iden(cupom);
             mantenCupom.setMantemcup_adm_iden(ControlerLoginAdministrador.administrador);
-            mantemCupomBll.Add(mantenCupom);
+            mantemCupomBll.add(mantenCupom);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("CUPOM FOI ADICIONADO");
@@ -93,11 +97,7 @@ public class ControlerCupom implements Initializable {
 
         } catch (Exception e) {
 
-            dialogoErro.setTitle("ERRO");
-            dialogoErro.setHeaderText("ERRO AO INCLUIR");
-            dialogoErro.setContentText(e.getMessage());
-            dialogoErro.showAndWait();
-            System.out.println(e.getMessage());
+            erroGeral("ERRO NAO INCLUIR", e.getMessage());
 
         }
     }
@@ -106,7 +106,7 @@ public class ControlerCupom implements Initializable {
     public void vaiExcluirCup(ActionEvent actionEvent) {
         try {
             cupom = (Cupom) cupomBll.getById(id);
-            cupomBll.Delete(id);
+            cupomBll.delete(id);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("CUPOM APAGADO");
@@ -117,11 +117,7 @@ public class ControlerCupom implements Initializable {
             limparCampos();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            dialogoErro.setTitle("ERRO");
-            dialogoErro.setHeaderText("ERRO AO EXCLUIR");
-            dialogoErro.setContentText(e.getMessage());
-            dialogoErro.showAndWait();
+            erroGeral("ERRO NAO EXCLUIR", e.getMessage());
 
         }
     }
@@ -143,10 +139,8 @@ public class ControlerCupom implements Initializable {
             limparCampos();
 
         } catch (Exception e) {
-            dialogoErro.setTitle("ERRO");
-            dialogoErro.setHeaderText("ERRO AO EDITAR");
-            dialogoErro.setContentText(e.getMessage());
-            dialogoErro.showAndWait();
+            erroGeral("ERRO NAO EDITAR", e.getMessage());
+
 
         }
     }
@@ -173,10 +167,10 @@ public class ControlerCupom implements Initializable {
         List<MantenCupom> mantenCupomList = mantemCupomBll.getAll();
         ObservableList<MantenCupom> mantenCupomObservableList;
 
-        columDadosID.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemCupom_iden()+""));
+        columDadosID.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemCupom_iden() + ""));
         columDadosCriador.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_adm_iden().getAdm_nome()));
         columDadosCupom.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_cup_iden().getNome()));
-        columDadosDataCriacao.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_cup_iden().getCupom_DataGeracao()+""));
+        columDadosDataCriacao.setCellValueFactory(obj -> new SimpleStringProperty(obj.getValue().getMantemcup_cup_iden().getCupom_DataGeracao() + ""));
         mantenCupomObservableList = FXCollections.observableList(mantenCupomList);
         tableDadosCupxUsu.setItems(mantenCupomObservableList);
     }
@@ -203,6 +197,15 @@ public class ControlerCupom implements Initializable {
     }
 
     public void VaiSentarDadosTxtField(MouseEvent mouseEvent) {
+    }
+
+    private void erroGeral(String titulo, String erro) {
+        dialogoErro.setTitle("ERRO");
+        dialogoErro.setHeaderText("ERRO AO INCLUIR");
+        dialogoErro.setContentText(erro);
+        dialogoErro.showAndWait();
+
+
     }
 }
 

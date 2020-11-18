@@ -1,12 +1,7 @@
 package br.com.watlas.bll;
 
 import br.com.watlas.dal.ContrataDal;
-import br.com.watlas.modal.Contrata;
-import br.com.watlas.modal.Usuario;
 import br.com.watlas.util.ICRUD_GENERIC;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 
 import java.util.List;
 
@@ -19,19 +14,19 @@ public class ContrataBll implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         try {
 
-            dal.Add(objeto);
+            dal.add(objeto);
         } catch (Exception e) {
             throw e;
         }
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         try {
-            dal.Delete(n);
+            dal.delete(n);
         } catch (Exception e) {
             throw e;
         }

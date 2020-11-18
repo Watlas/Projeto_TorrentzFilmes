@@ -116,6 +116,8 @@ public class Mainapp extends Application {
                 stage.setScene(loginUsuario);
                 break;
             case "cadastroDeUsuario":
+                Parent fxmlCadastroUsuario = FXMLLoader.load(Mainapp.class.getResource("fxmls/ControlerCadUsuario.fxml"));
+                cadastroDeusuario = new Scene(fxmlCadastroUsuario);
                 stage.setScene(cadastroDeusuario);
                 break;
             case "filmesUsuario":

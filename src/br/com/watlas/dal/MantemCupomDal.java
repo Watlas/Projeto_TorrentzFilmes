@@ -25,7 +25,7 @@ public class MantemCupomDal implements ICRUD_GENERIC {
 
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         mantenCupom = (MantenCupom) objeto;
         String sql = "INSERT INTO mantem_cupum (mantem_cupom_adm_iden, mantem_cupom_cup_iden)" +
                 "VALUES (?,?)";
@@ -40,7 +40,7 @@ public class MantemCupomDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM mantem_cupum WHERE mantem_cupom_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

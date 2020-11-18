@@ -24,7 +24,7 @@ public class VisualizaDal implements ICRUD_GENERIC {
 
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         visualiza = (Visualiza) objeto;
         String sql = "INSERT INTO vizualiza (viz_completo, viz_data_vizualizacao ,vizu_usuario_iden, vizu_Filmes_iden) " +
                 "VALUES (?,?,?,?)";
@@ -41,7 +41,7 @@ public class VisualizaDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM vizualiza WHERE vis_iden";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);

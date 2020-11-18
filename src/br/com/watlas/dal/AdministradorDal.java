@@ -21,7 +21,7 @@ public class AdministradorDal<T> implements ICRUD_GENERIC<T> {
     }
 
     @Override
-    public void Add(T objeto) throws Exception {
+    public void add(T objeto) throws Exception {
         administrador = (Administrador) objeto;
         String sql = "INSERT INTO administrador(adm_iden, adm_nome, adm_email, adm_senha)" +
                 " VALUES (DEFAULT, ?,?,?)";
@@ -39,7 +39,7 @@ public class AdministradorDal<T> implements ICRUD_GENERIC<T> {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM administrador WHERE adm_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

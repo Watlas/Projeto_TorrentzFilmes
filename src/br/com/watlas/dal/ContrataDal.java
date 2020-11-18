@@ -22,7 +22,7 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
     }
 
     @Override
-    public void Add(T objeto) throws Exception {
+    public void add(T objeto) throws Exception {
         contrata = (Contrata) objeto;
         String sql = "INSERT INTO contrata(con_iden,con_inicio," +
                 "con_fim, con_status, con_pla_iden, con_usu_iden)" +
@@ -44,7 +44,7 @@ public class ContrataDal<T> implements ICRUD_GENERIC<T> {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM contrata WHERE con_iden=?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);

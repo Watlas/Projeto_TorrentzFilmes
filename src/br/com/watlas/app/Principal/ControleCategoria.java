@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.List;
@@ -53,7 +52,7 @@ public class ControleCategoria implements Initializable {
     public void vaiIncluirCat(ActionEvent actionEvent) {
         try {
             categoria.setCategoria_nome(txtNomeCat.getText());
-            categoriaBll.Add(categoria);
+            categoriaBll.add(categoria);
 
 
             dialogoInfo.setTitle("INFORMAÇÃO");
@@ -75,7 +74,7 @@ public class ControleCategoria implements Initializable {
     public void vaiExcluirCat(ActionEvent actionEvent) {
         try {
             categoria = (Categoria) categoriaBll.getById(id);
-            categoriaBll.Delete(id);
+            categoriaBll.delete(id);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("CATEGORIA EXCLUIDA");

@@ -3,7 +3,6 @@ package br.com.watlas.app.Principal;
 import br.com.watlas.bll.CupomBll;
 import br.com.watlas.bll.UsuarioBll;
 import br.com.watlas.modal.Cupom;
-import br.com.watlas.modal.Filme;
 import br.com.watlas.modal.Usuario;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,7 +14,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -75,7 +73,7 @@ public class ControlerUsuario_ADM implements Initializable {
                 if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
                     erroGeral("ERRO AO INCLUIR", "Senhas \nnao conferem");
                 } else {
-                    usuarioBll.Add(usuario);
+                    usuarioBll.add(usuario);
                     dialogoInfo.setTitle("INFORMAÇÃO");
                     dialogoInfo.setHeaderText("USUARIO ADICIONADO");
                     dialogoInfo.setContentText("Usuario " + usuario.getNome() + " foi adicionado!");
@@ -101,7 +99,7 @@ public class ControlerUsuario_ADM implements Initializable {
 
     public void vaiExcluir(ActionEvent actionEvent) {
         try {
-            usuarioBll.Delete(id);
+            usuarioBll.delete(id);
 
             dialogoInfo.setTitle("INFORMAÇÃO");
             dialogoInfo.setHeaderText("USUARIO APAGADO");

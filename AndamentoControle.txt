@@ -1,5 +1,5 @@
  					       ADM
-CLASSES        	DAL    APP    BLL     MODAL   TESTE
+CLASSES        	DAL    APP    BLL     MODAL   TESTE    
 administrador 	<OK>   <OK>   <OK>     <OK>    <OK> 
 categoria     	<OK>   <OK>   <OK>     <OK>    <OK>
 contrata      	<OK>   <OK>   <OK>     <OK>    <OK>

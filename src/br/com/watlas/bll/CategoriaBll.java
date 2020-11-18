@@ -15,19 +15,19 @@ public class CategoriaBll implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         try {
             validaCategoria((Categoria) objeto);
-            dal.Add(objeto);
+            dal.add(objeto);
         } catch (Exception e) {
             throw e;
         }
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         try {
-            dal.Delete(n);
+            dal.delete(n);
         } catch (Exception e) {
             String m = e.getMessage();
             if (m.contains("update or delete on table \"categorias\" violates foreign key constraint \"filmes_fil_cat_iden_fkey\" on table \"filmes\"")) {

@@ -23,7 +23,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
 
     }
     @Override
-    public void Add(T objeto) throws Exception {
+    public void add(T objeto) throws Exception {
         categoria = (Categoria) objeto;
         String sql = "INSERT INTO categorias(cat_iden, cat_nome) " +
                     "VALUES (DEFAULT, ?)";
@@ -37,7 +37,7 @@ public class CategoriaDal<T> implements ICRUD_GENERIC<T> {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM categorias WHERE cat_iden =?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

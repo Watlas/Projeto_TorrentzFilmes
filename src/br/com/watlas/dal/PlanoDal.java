@@ -21,7 +21,7 @@ public class PlanoDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         plano = (Plano) objeto;
         String sql = "INSERT INTO planos(pla_preco, pla_acesso_simutaneo, pla_nome)" +
                 "VALUES (?,?,?)";
@@ -38,7 +38,7 @@ public class PlanoDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM planos WHERE pla_iden=?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

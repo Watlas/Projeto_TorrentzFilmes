@@ -22,7 +22,7 @@ public class CupomDal implements ICRUD_GENERIC {
 
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         cupom = (Cupom) objeto;
         String sql = "INSERT INTO cupons(cup_data_geracao,cup_porcentagem,cup_nome)" +
                 " VALUES (?,?,?)";
@@ -39,7 +39,7 @@ public class CupomDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM cupons WHERE cup_iden =?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);

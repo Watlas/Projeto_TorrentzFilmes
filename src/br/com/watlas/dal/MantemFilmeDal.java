@@ -24,7 +24,7 @@ public class MantemFilmeDal implements ICRUD_GENERIC {
 
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         mantemFilme = (MantemFilme) objeto;
         String sql = "INSERT INTO mantem_filme (mantem_filme_adm_iden, mantem_filme_fil_iden)" +
                 "VALUES (?,?)";
@@ -40,7 +40,7 @@ public class MantemFilmeDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM mantem_filme WHERE mantem_filme_iden =?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

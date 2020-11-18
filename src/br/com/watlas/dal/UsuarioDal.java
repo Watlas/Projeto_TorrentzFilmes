@@ -22,7 +22,7 @@ public class UsuarioDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         usuario = (Usuario) objeto;
         String sql = "INSERT INTO usuario(usu_nome, usu_email ,usu_cpf, usu_senha, usu_cup_iden)" +
                 "VALUES (?,?,?,?,?)";
@@ -41,7 +41,7 @@ public class UsuarioDal implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM usuario WHERE usu_iden =?";
         try {
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);

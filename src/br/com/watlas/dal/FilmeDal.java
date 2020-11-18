@@ -23,7 +23,7 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
 
 
     @Override
-    public void Add(T objeto) throws Exception {
+    public void add(T objeto) throws Exception {
         filme = (Filme) objeto;
         String sql = "INSERT INTO filmes (fil_caminho, fil_titulo, fil_ano ,fil_sintopse,fil_capa, fil_cat_iden)" +
                 "VALUES (?,?,?,?,?,?)";
@@ -44,7 +44,7 @@ public class FilmeDal<T> implements ICRUD_GENERIC<T> {
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         String sql = "DELETE FROM filmes WHERE fil_iden =?";
         try {
             PreparedStatement ps = conexao.prepareStatement(sql);

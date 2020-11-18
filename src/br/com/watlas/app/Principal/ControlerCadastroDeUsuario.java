@@ -47,10 +47,10 @@ public class ControlerCadastroDeUsuario implements Initializable {
             if (txtNome.getText().contains(" ")){
                 throw new Exception("O nome nao pode conter espaços");
             }
-            if (txtSenha.getText().equals(txtSenhaConfirmar)) {
+            if (!txtSenha.getText().equals(txtSenhaConfirmar.getText())) {
                 erroGeral("SENHAS NAO CONFEREM", "AS SENHAS DEVEM SER IGUAIS");
             } else {
-                usuario.setNome(txtNome.getText());
+                usuario.setNome(txtNome.getText().replace('.', ' ').replace('-', ' ').trim());
                 usuario.setCpf(txtCpf.getText());
                 usuario.setSenha(txtSenha.getText());
                 usuario.setEmail(txtEmail.getText());
@@ -60,7 +60,7 @@ public class ControlerCadastroDeUsuario implements Initializable {
                     cupom = (Cupom) cupomBll.getByNome(txtCupom.getText());
                 }
                 usuario.setCupom(cupom);
-                usuarioBll.Add(usuario);
+                usuarioBll.add(usuario);
                 limparCampos();
                 Mainapp.mudarTela("loginUsuario");
             }

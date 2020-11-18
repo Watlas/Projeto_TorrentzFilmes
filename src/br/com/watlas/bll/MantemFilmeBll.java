@@ -1,6 +1,5 @@
 package br.com.watlas.bll;
 
-import br.com.watlas.dal.MantemCupomDal;
 import br.com.watlas.dal.MantemFilmeDal;
 import br.com.watlas.util.ICRUD_GENERIC;
 
@@ -15,18 +14,18 @@ public class MantemFilmeBll implements ICRUD_GENERIC {
     }
 
     @Override
-    public void Add(Object objeto) throws Exception {
+    public void add(Object objeto) throws Exception {
         try {
-            dal.Add(objeto);
+            dal.add(objeto);
         } catch (Exception e) {
             throw e;
         }
     }
 
     @Override
-    public void Delete(int n) throws Exception {
+    public void delete(int n) throws Exception {
         try {
-            dal.Delete(n);
+            dal.delete(n);
         } catch (Exception e) {
             throw e;
         }
