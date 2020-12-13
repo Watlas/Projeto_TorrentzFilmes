@@ -110,28 +110,18 @@ public class UsuarioBll implements ICRUD_GENERIC {
 
     public void validaUsuario(Usuario objeto)throws Exception{
         String nome = objeto.getNome().trim().toLowerCase();
-        String invalidos = "1234567890'\"!@#$%¨&*()-_+={[}]/?><;:";
+        String invalidos = "'\"!@#$%¨&*()-_+={[}]/?><;:";
         for (int i = 0; i < invalidos.length(); i++) {
             if (nome.contains("" + invalidos.charAt(i))) {
                 throw new Exception("Nome de usuario inválido!");
             }
         }
-        // Verifica se o CPF é válido
-        if (isValidCPF(objeto.getCpf().replace(".", "").replace("-", "")) == false) {
-            throw new Exception("Não foi possível concluir sua solicitação"
-                    + "\nO CPF informado não é válido");
-        }
-
         // Verifica se EMAIL é válido
         if (isValidEmailAddressRegex(objeto.getEmail()) == false) {
             throw new Exception("Não foi possível concluir sua solicitação"
                     + "\nO EMAIL informado não é válido");
         }
 
-//
-//        if(!objeto.getCpf().matches("[0-9]+")){
-//            throw new Exception("no campo CPF digite NUMEROS.");
-//        }
         if (objeto.getCpf().equals("")) {
             throw new Exception("Informe o CPF do usuario");
         }
